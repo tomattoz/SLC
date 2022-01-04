@@ -32,6 +32,7 @@
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
 		B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E172784D4F4008992E9 /* CurtainContentController.xib */; };
 		B7858E1B2784DC81008992E9 /* OpaqueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E1A2784DC81008992E9 /* OpaqueBox.swift */; };
+		B7858E1D2784F733008992E9 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E1C2784F733008992E9 /* AboutPanel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,6 @@
 		7C61B13F26279B2000D76010 /* backupScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = backupScript.sh; sourceTree = "<group>"; };
 		7C61B14F2627B9A600D76010 /* Sarah Lawrence College Installer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Sarah Lawrence College Installer.app"; sourceTree = "<group>"; };
 		7C61B1532627D1DB00D76010 /* IdleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleTimer.swift; sourceTree = "<group>"; };
-		7C6875182671129500882977 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutPanel.xib; path = "../../../SLC-Xcode-project/SessionManager/Views/AboutPanel.xib"; sourceTree = "<group>"; };
 		7C6DBE8D2631B6E60019D97C /* Admins.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Admins.plist; sourceTree = "<group>"; };
 		7C6DBE932631D3A10019D97C /* AboutPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPanelController.swift; sourceTree = "<group>"; };
 		7C6F47DE262F7B7700F2DEE9 /* Users.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Users.plist; sourceTree = "<group>"; };
@@ -64,6 +64,7 @@
 		B7858E162784D4F4008992E9 /* CurtainContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainContentController.swift; sourceTree = "<group>"; };
 		B7858E172784D4F4008992E9 /* CurtainContentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurtainContentController.xib; sourceTree = "<group>"; };
 		B7858E1A2784DC81008992E9 /* OpaqueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpaqueBox.swift; sourceTree = "<group>"; };
+		B7858E1C2784F733008992E9 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,22 +118,22 @@
 		7CCAB0522624448000917D07 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7CCAB0A0262483F500917D07 /* Curtain.xib */,
-				7CCAB09F262483F400917D07 /* CurtainWindowController.swift */,
-				7CCAB08E262480F500917D07 /* LoginPanelController.swift */,
-				7CCAB08F262480F500917D07 /* LoginPanel.xib */,
-				7C2B5B442629DB5F00538114 /* TestingPanelController.swift */,
-				7C2B5B482629DB7200538114 /* TestingPanel.xib */,
-				7CCAB089262480DC00917D07 /* WelcomePanelController.swift */,
-				7CCAB08A262480DC00917D07 /* WelcomePanel.xib */,
-				7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */,
-				7C6875182671129500882977 /* AboutPanel.xib */,
+				B7858E1C2784F733008992E9 /* AboutPanel.xib */,
 				7C6DBE932631D3A10019D97C /* AboutPanelController.swift */,
-				7CDF325F2644627500478813 /* BackupPanelController.swift */,
 				7CDF32602644627500478813 /* BackupPanel.xib */,
+				7CDF325F2644627500478813 /* BackupPanelController.swift */,
+				7CCAB0A0262483F500917D07 /* Curtain.xib */,
 				B7858E162784D4F4008992E9 /* CurtainContentController.swift */,
 				B7858E172784D4F4008992E9 /* CurtainContentController.xib */,
+				7CCAB09F262483F400917D07 /* CurtainWindowController.swift */,
+				7CCAB08F262480F500917D07 /* LoginPanel.xib */,
+				7CCAB08E262480F500917D07 /* LoginPanelController.swift */,
 				B7858E1A2784DC81008992E9 /* OpaqueBox.swift */,
+				7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */,
+				7C2B5B482629DB7200538114 /* TestingPanel.xib */,
+				7C2B5B442629DB5F00538114 /* TestingPanelController.swift */,
+				7CCAB08A262480DC00917D07 /* WelcomePanel.xib */,
+				7CCAB089262480DC00917D07 /* WelcomePanelController.swift */,
 			);
 			name = Views;
 			path = SessionManager/Views;
@@ -215,6 +216,7 @@
 				7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */,
 				950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */,
 				7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */,
+				B7858E1D2784F733008992E9 /* AboutPanel.xib in Resources */,
 				7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

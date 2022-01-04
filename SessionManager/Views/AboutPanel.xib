@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AboutPanelController" customModule="SLC" customModuleProvider="target">
             <connections>
                 <outlet property="copyrightLabel" destination="ZAU-54-1qS" id="yL4-iE-F4U"/>
-                <outlet property="iconView" destination="PML-IG-PM7" id="gt9-Wb-TcZ"/>
-                <outlet property="loginButton" destination="yeU-NF-C3Y" id="0PZ-7e-hio"/>
+                <outlet property="iconButton" destination="yeU-NF-C3Y" id="xpI-RM-Lz1"/>
                 <outlet property="nameField" destination="iTI-0n-EgK" id="BUR-6z-rVw"/>
                 <outlet property="versionLabel" destination="5mw-XW-2yc" id="rOV-Kf-VWQ"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>

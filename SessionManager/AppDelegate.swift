@@ -21,7 +21,7 @@ struct Processes {
             }
 
             let cpath = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
-            let cname = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
+            _ = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
             proc_pidpath(pid, cpath, UInt32(MAXPATHLEN))
             
             guard strlen(cpath) > 0 else {
@@ -29,7 +29,7 @@ struct Processes {
             }
 
             let path = String(cString: cpath)
-            let url = URL(fileURLWithPath: path)
+            _ = URL(fileURLWithPath: path)
 
             
             //proc_pidinfo(pid, Int32, UInt64, UnsafeMutableRawPointer!, Int32)
@@ -38,7 +38,7 @@ struct Processes {
 
             _ = proc_pidinfo(pid, PROC_PIDTBSDINFO, 0, pidInfo, InfoSize)
             if  InfoSize > 0 {
-                let ts = Date(timeIntervalSince1970: TimeInterval(pidInfo.pointee.pbi_start_tvsec))
+                _ = Date(timeIntervalSince1970: TimeInterval(pidInfo.pointee.pbi_start_tvsec))
                 let nm = pidInfo.pointee.pbi_uid
                 print ("\(getpid() == pid ? "******" : "")\(nm) : \(pid) \(path)")
             }
@@ -48,7 +48,7 @@ struct Processes {
     
     static func listAllPids() -> [Int32] {
         let uid = getuid()
-        print("uid: \(getuid)")
+        print("uid: \(String(describing: getuid))")
         let pnum = proc_listpids(UInt32(PROC_UID_ONLY), uid, nil, 0)
         //let pnum = proc_listpids(UInt32(PROC_ALL_PIDS), 0, nil, 0)
         var pids = [pid_t](repeating: 0, count: Int(pnum))

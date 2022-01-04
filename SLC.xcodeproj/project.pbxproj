@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7C2B5B3E2629D31000538114 /* RoundedButtonCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */; };
+		7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B442629DB5F00538114 /* TestingPanelController.swift */; };
+		7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2B5B482629DB7200538114 /* TestingPanel.xib */; };
+		7C2B5B50262A1E4F00538114 /* LoginPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAB08E262480F500917D07 /* LoginPanelController.swift */; };
+		7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCAB08F262480F500917D07 /* LoginPanel.xib */; };
+		7C61B14026279B2000D76010 /* backupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7C61B13F26279B2000D76010 /* backupScript.sh */; };
+		7C61B1502627B9A600D76010 /* Sarah Lawrence College Installer.app in Resources */ = {isa = PBXBuildFile; fileRef = 7C61B14F2627B9A600D76010 /* Sarah Lawrence College Installer.app */; };
+		7C61B1542627D1DC00D76010 /* IdleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61B1532627D1DB00D76010 /* IdleTimer.swift */; };
+		7C6875192671129500882977 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C6875182671129500882977 /* AboutPanel.xib */; };
+		7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C6DBE8D2631B6E60019D97C /* Admins.plist */; };
+		7C6DBE952631D3A30019D97C /* AboutPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6DBE932631D3A10019D97C /* AboutPanelController.swift */; };
+		7C6F47DF262F7B7700F2DEE9 /* Users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C6F47DE262F7B7700F2DEE9 /* Users.plist */; };
+		7CCAB042262442BF00917D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAB041262442BF00917D07 /* AppDelegate.swift */; };
+		7CCAB044262442C300917D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCAB043262442C300917D07 /* Assets.xcassets */; };
+		7CCAB047262442C300917D07 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCAB045262442C300917D07 /* MainMenu.xib */; };
+		7CCAB08B262480DD00917D07 /* WelcomePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAB089262480DC00917D07 /* WelcomePanelController.swift */; };
+		7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCAB08A262480DC00917D07 /* WelcomePanel.xib */; };
+		7CCAB0A1262483F500917D07 /* CurtainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAB09F262483F400917D07 /* CurtainViewController.swift */; };
+		7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCAB0A0262483F500917D07 /* Curtain.xib */; };
+		7CDF32612644627500478813 /* BackupPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF325F2644627500478813 /* BackupPanelController.swift */; };
+		7CDF32622644627500478813 /* BackupPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDF32602644627500478813 /* BackupPanel.xib */; };
+		950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */; };
+		B7858DF52784AFCA008992E9 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B7858DF42784AFCA008992E9 /* LaunchAtLogin */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonCellCell.swift; sourceTree = "<group>"; };
+		7C2B5B442629DB5F00538114 /* TestingPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingPanelController.swift; sourceTree = "<group>"; };
+		7C2B5B482629DB7200538114 /* TestingPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingPanel.xib; sourceTree = "<group>"; };
+		7C61B13F26279B2000D76010 /* backupScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = backupScript.sh; sourceTree = "<group>"; };
+		7C61B14F2627B9A600D76010 /* Sarah Lawrence College Installer.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = "Sarah Lawrence College Installer.app"; sourceTree = "<group>"; };
+		7C61B1532627D1DB00D76010 /* IdleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleTimer.swift; sourceTree = "<group>"; };
+		7C6875182671129500882977 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutPanel.xib; path = "../../../SLC-Xcode-project/SessionManager/Views/AboutPanel.xib"; sourceTree = "<group>"; };
+		7C6DBE8D2631B6E60019D97C /* Admins.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Admins.plist; sourceTree = "<group>"; };
+		7C6DBE932631D3A10019D97C /* AboutPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPanelController.swift; sourceTree = "<group>"; };
+		7C6F47DE262F7B7700F2DEE9 /* Users.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Users.plist; sourceTree = "<group>"; };
+		7CCAB03E262442BF00917D07 /* SLC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CCAB041262442BF00917D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7CCAB043262442C300917D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7CCAB046262442C300917D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7CCAB048262442C300917D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CCAB049262442C300917D07 /* SLC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLC.entitlements; sourceTree = "<group>"; };
+		7CCAB08326244CAC00917D07 /* SLC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLC-Bridging-Header.h"; sourceTree = "<group>"; };
+		7CCAB089262480DC00917D07 /* WelcomePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePanelController.swift; sourceTree = "<group>"; };
+		7CCAB08A262480DC00917D07 /* WelcomePanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomePanel.xib; sourceTree = "<group>"; };
+		7CCAB08E262480F500917D07 /* LoginPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPanelController.swift; sourceTree = "<group>"; };
+		7CCAB08F262480F500917D07 /* LoginPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginPanel.xib; sourceTree = "<group>"; };
+		7CCAB09F262483F400917D07 /* CurtainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainViewController.swift; sourceTree = "<group>"; };
+		7CCAB0A0262483F500917D07 /* Curtain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Curtain.xib; sourceTree = "<group>"; };
+		7CDF325F2644627500478813 /* BackupPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPanelController.swift; sourceTree = "<group>"; };
+		7CDF32602644627500478813 /* BackupPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPanel.xib; sourceTree = "<group>"; };
+		950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = edu.slc.logoutcleaner.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7CCAB03B262442BF00917D07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7858DF52784AFCA008992E9 /* LaunchAtLogin in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7CCAB035262442BF00917D07 = {
+			isa = PBXGroup;
+			children = (
+				7C61B13F26279B2000D76010 /* backupScript.sh */,
+				7CCAB040262442BF00917D07 /* SessionManager */,
+				7CCAB03F262442BF00917D07 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7CCAB03F262442BF00917D07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CCAB03E262442BF00917D07 /* SLC.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7CCAB040262442BF00917D07 /* SessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				7C61B1532627D1DB00D76010 /* IdleTimer.swift */,
+				7CCAB0522624448000917D07 /* Views */,
+				7CCAB041262442BF00917D07 /* AppDelegate.swift */,
+				7CCAB043262442C300917D07 /* Assets.xcassets */,
+				7C6F47DE262F7B7700F2DEE9 /* Users.plist */,
+				950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */,
+				7C6DBE8D2631B6E60019D97C /* Admins.plist */,
+				7CCAB045262442C300917D07 /* MainMenu.xib */,
+				7CCAB048262442C300917D07 /* Info.plist */,
+				7CCAB049262442C300917D07 /* SLC.entitlements */,
+				7CCAB08326244CAC00917D07 /* SLC-Bridging-Header.h */,
+				7CCAB09F262483F400917D07 /* CurtainViewController.swift */,
+				7CCAB0A0262483F500917D07 /* Curtain.xib */,
+				7C61B14F2627B9A600D76010 /* Sarah Lawrence College Installer.app */,
+			);
+			path = SessionManager;
+			sourceTree = "<group>";
+		};
+		7CCAB0522624448000917D07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7CCAB08E262480F500917D07 /* LoginPanelController.swift */,
+				7CCAB08F262480F500917D07 /* LoginPanel.xib */,
+				7C2B5B442629DB5F00538114 /* TestingPanelController.swift */,
+				7C2B5B482629DB7200538114 /* TestingPanel.xib */,
+				7CCAB089262480DC00917D07 /* WelcomePanelController.swift */,
+				7CCAB08A262480DC00917D07 /* WelcomePanel.xib */,
+				7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */,
+				7C6875182671129500882977 /* AboutPanel.xib */,
+				7C6DBE932631D3A10019D97C /* AboutPanelController.swift */,
+				7CDF325F2644627500478813 /* BackupPanelController.swift */,
+				7CDF32602644627500478813 /* BackupPanel.xib */,
+			);
+			name = Views;
+			path = SessionManager/Views;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7CCAB03D262442BF00917D07 /* SLC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CCAB04C262442C300917D07 /* Build configuration list for PBXNativeTarget "SLC" */;
+			buildPhases = (
+				7CCAB03A262442BF00917D07 /* Sources */,
+				7CCAB03B262442BF00917D07 /* Frameworks */,
+				7CCAB03C262442BF00917D07 /* Resources */,
+				B7858DF62784B013008992E9 /* Integrate LaunchAtLogin */,
+				7C61B1572627DD0800D76010 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SLC;
+			packageProductDependencies = (
+				B7858DF42784AFCA008992E9 /* LaunchAtLogin */,
+			);
+			productName = PennLogout;
+			productReference = 7CCAB03E262442BF00917D07 /* SLC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7CCAB036262442BF00917D07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					7CCAB03D262442BF00917D07 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 7CCAB039262442BF00917D07 /* Build configuration list for PBXProject "SLC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7CCAB035262442BF00917D07;
+			packageReferences = (
+				B7858DF32784AFCA008992E9 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+			);
+			productRefGroup = 7CCAB03F262442BF00917D07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7CCAB03D262442BF00917D07 /* SLC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7CCAB03C262442BF00917D07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C6F47DF262F7B7700F2DEE9 /* Users.plist in Resources */,
+				7CCAB044262442C300917D07 /* Assets.xcassets in Resources */,
+				7CDF32622644627500478813 /* BackupPanel.xib in Resources */,
+				7C61B1502627B9A600D76010 /* Sarah Lawrence College Installer.app in Resources */,
+				7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */,
+				7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */,
+				7CCAB047262442C300917D07 /* MainMenu.xib in Resources */,
+				7C61B14026279B2000D76010 /* backupScript.sh in Resources */,
+				7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */,
+				950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */,
+				7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */,
+				7C6875192671129500882977 /* AboutPanel.xib in Resources */,
+				7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C61B1572627DD0800D76010 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#exit 0\nFILE_CP=\"$PROJECT_DIR/../../$TARGETNAME-$CURRENT_PROJECT_VERSION.app\"\nARCHIVE=\"$PROJECT_DIR/../../$TARGETNAME-APP-$CURRENT_PROJECT_VERSION.zip\"\necho cp -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\" \"$FILE_CP\"\n[ -f \"$ARCHIVE\" ] && rm -r \"$ARCHIVE\"\n[ -d \"$FILE_CP\" ] && rm -r \"$FILE_CP\"\ncp -R -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\"  \"$FILE_CP\"\nzip -r \"$ARCHIVE\" \"$FILE_CP\"\n\n\n\n\n\n\n";
+		};
+		B7858DF62784B013008992E9 /* Integrate LaunchAtLogin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Integrate LaunchAtLogin";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7CCAB03A262442BF00917D07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CCAB08B262480DD00917D07 /* WelcomePanelController.swift in Sources */,
+				7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */,
+				7C61B1542627D1DC00D76010 /* IdleTimer.swift in Sources */,
+				7C2B5B50262A1E4F00538114 /* LoginPanelController.swift in Sources */,
+				7C6DBE952631D3A30019D97C /* AboutPanelController.swift in Sources */,
+				7C2B5B3E2629D31000538114 /* RoundedButtonCellCell.swift in Sources */,
+				7CCAB042262442BF00917D07 /* AppDelegate.swift in Sources */,
+				7CCAB0A1262483F500917D07 /* CurtainViewController.swift in Sources */,
+				7CDF32612644627500478813 /* BackupPanelController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7CCAB045262442C300917D07 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7CCAB046262442C300917D07 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7CCAB04A262442C300917D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.08;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0.9;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "SessionManager/PSM-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7CCAB04B262442C300917D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.08;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "SessionManager/PSM-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		7CCAB04D262442C300917D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SLC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.12;
+				DEVELOPMENT_TEAM = 6GB4S5A8NB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SessionManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.2;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SessionManager/SLC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7CCAB04E262442C300917D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SLC.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.12;
+				DEVELOPMENT_TEAM = 6GB4S5A8NB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SessionManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SessionManager/SLC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7CCAB039262442BF00917D07 /* Build configuration list for PBXProject "SLC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CCAB04A262442C300917D07 /* Debug */,
+				7CCAB04B262442C300917D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CCAB04C262442C300917D07 /* Build configuration list for PBXNativeTarget "SLC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CCAB04D262442C300917D07 /* Debug */,
+				7CCAB04E262442C300917D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7858DF32784AFCA008992E9 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7858DF42784AFCA008992E9 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7858DF32784AFCA008992E9 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7CCAB036262442BF00917D07 /* Project object */;
+}

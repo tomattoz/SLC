@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TestingPanelController" customModule="SLC" customModuleProvider="target">
+            <connections>
+                <outlet property="doHardLogoutBtn" destination="9lX-ZI-Oht" id="CLu-Ug-Axf"/>
+                <outlet property="doLogoutBtn" destination="rum-sL-uv1" id="TFj-Mf-ni6"/>
+                <outlet property="extendButton" destination="qL6-YF-agQ" id="3zF-W0-wgk"/>
+                <outlet property="idleTimeLabel" destination="6k7-c3-gta" id="ucw-lI-fAR"/>
+                <outlet property="multiplierButton" destination="sFp-Qn-TcZ" id="uco-iV-kyy"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Testing" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="F0z-JX-Cv5" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+            <view key="contentView" id="se5-gp-TjO" customClass="TestingView" customModule="SLC" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="FWl-5d-Fdb" userLabel="Multiplier">
+                        <rect key="frame" x="31" y="150" width="218" height="40"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sFp-Qn-TcZ">
+                                <rect key="frame" x="0.0" y="0.0" width="218" height="41"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="squareTextured" title="Multiplier: 1x" bezelStyle="texturedSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="6AQ-p0-fJV" customClass="RoundedButtonCellCell" customModule="SLC" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" size="20" name="Avenir-Book"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="604-gP-8du"/>
+                            <constraint firstAttribute="width" constant="218" id="aIo-DQ-hsV"/>
+                            <constraint firstAttribute="height" constant="40" id="fQw-rx-KeT"/>
+                        </constraints>
+                    </customView>
+                    <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otg-La-5Yp" userLabel="Logout">
+                        <rect key="frame" x="288" y="31" width="163" height="61"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rum-sL-uv1">
+                                <rect key="frame" x="0.0" y="0.0" width="163" height="61"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="squareTextured" title="Logout" bezelStyle="texturedSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="fw6-2s-Ykl" customClass="RoundedButtonCellCell" customModule="SLC" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" size="24" name="Avenir-Book"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="doSoftLogout:" target="-2" id="mzE-EZ-KnV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="163" id="2La-E5-IQj"/>
+                            <constraint firstAttribute="height" constant="61" id="NSF-bc-Dhg"/>
+                        </constraints>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="itM-aE-YvK" userLabel="Hard logout">
+                        <rect key="frame" x="31" y="31" width="163" height="61"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lX-ZI-Oht">
+                                <rect key="frame" x="0.0" y="0.0" width="163" height="61"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="squareTextured" title="Hard Logout" bezelStyle="texturedSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="meh-2i-4Ww" customClass="RoundedButtonCellCell" customModule="SLC" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" size="24" name="Avenir-Book"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="doLogout:" target="-2" id="nmV-9Y-8bR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="163" id="Tvk-Ku-zyR"/>
+                            <constraint firstAttribute="height" constant="61" id="U4Q-su-g2b"/>
+                        </constraints>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6k7-c3-gta">
+                        <rect key="frame" x="29" y="180" width="234" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="230" id="64y-fj-MOB"/>
+                            <constraint firstAttribute="height" constant="70" id="goa-ba-XQZ"/>
+                        </constraints>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="4sk-WB-AQa">
+                            <font key="font" size="42" name="Menlo-Regular"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="a3R-bk-CoQ" userLabel="Extend">
+                        <rect key="frame" x="360" y="200" width="100" height="40"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qL6-YF-agQ">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="41"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="squareTextured" title="Extend" bezelStyle="texturedSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="vHb-jE-gsc" customClass="RoundedButtonCellCell" customModule="SLC" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" size="20" name="Avenir-Book"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="76s-kN-OjT"/>
+                            <constraint firstAttribute="width" constant="100" id="Fim-DN-QsB"/>
+                        </constraints>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="a3R-bk-CoQ" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="30" id="1wJ-8o-1bC"/>
+                    <constraint firstAttribute="trailing" secondItem="a3R-bk-CoQ" secondAttribute="trailing" constant="20" symbolic="YES" id="4Bz-of-2Pf"/>
+                    <constraint firstAttribute="trailing" secondItem="6k7-c3-gta" secondAttribute="trailing" constant="219" id="DgJ-Nd-vo2"/>
+                    <constraint firstItem="itM-aE-YvK" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="31" id="Qfs-7L-2GC"/>
+                    <constraint firstAttribute="trailing" secondItem="otg-La-5Yp" secondAttribute="trailing" constant="29" id="WXS-iF-TgS"/>
+                    <constraint firstAttribute="bottom" secondItem="itM-aE-YvK" secondAttribute="bottom" constant="31" id="Z2C-bU-2Cg"/>
+                    <constraint firstItem="FWl-5d-Fdb" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="31" id="eno-K6-kC7"/>
+                    <constraint firstItem="6k7-c3-gta" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="lUJ-iJ-lMO"/>
+                    <constraint firstAttribute="bottom" secondItem="FWl-5d-Fdb" secondAttribute="bottom" constant="150" id="yUK-M9-49V"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="46" y="90"/>
+        </window>
+    </objects>
+</document>

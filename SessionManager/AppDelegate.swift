@@ -495,12 +495,14 @@ rm /tmp/installer.sh
         
         loginController!.window?.makeKeyAndOrderFront(self)
         loginController!.window?.level = .mainMenu + 1
-        if welcomController != nil {
-            let welcomeFrame = (welcomController!.window?.frame)!
-            loginController!.window?.setFrameOrigin(NSPoint.init(x: welcomeFrame.origin.x + (welcomeFrame.size.width * 1.0 + 20.0), y: welcomeFrame.origin.y + welcomeFrame.height - (loginController!.window?.frame.height)!))
-        } else {
-            loginController!.window?.center()
-        }
+//        if welcomeController != nil {
+//            let welcomeFrame = (welcomeController!.window?.frame)!
+//            loginController!.window?.setFrameOrigin(NSPoint.init(x: welcomeFrame.origin.x + (welcomeFrame.size.width * 1.0 + 20.0), y: welcomeFrame.origin.y + welcomeFrame.height - (loginController!.window?.frame.height)!))
+//        } else {
+//            loginController!.window?.center()
+//        }
+        
+        loginController?.window?.center()
 
         loginController?.setup()
 

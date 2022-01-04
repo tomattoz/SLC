@@ -15,7 +15,6 @@
 		7C61B14026279B2000D76010 /* backupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7C61B13F26279B2000D76010 /* backupScript.sh */; };
 		7C61B1502627B9A600D76010 /* Sarah Lawrence College Installer.app in Resources */ = {isa = PBXBuildFile; fileRef = 7C61B14F2627B9A600D76010 /* Sarah Lawrence College Installer.app */; };
 		7C61B1542627D1DC00D76010 /* IdleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61B1532627D1DB00D76010 /* IdleTimer.swift */; };
-		7C6875192671129500882977 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C6875182671129500882977 /* AboutPanel.xib */; };
 		7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C6DBE8D2631B6E60019D97C /* Admins.plist */; };
 		7C6DBE952631D3A30019D97C /* AboutPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6DBE932631D3A10019D97C /* AboutPanelController.swift */; };
 		7C6F47DF262F7B7700F2DEE9 /* Users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C6F47DE262F7B7700F2DEE9 /* Users.plist */; };
@@ -206,7 +205,6 @@
 				7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */,
 				950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */,
 				7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */,
-				7C6875192671129500882977 /* AboutPanel.xib in Resources */,
 				7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +412,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.12;
+				CURRENT_PROJECT_VERSION = 1.13;
 				DEVELOPMENT_TEAM = 6GB4S5A8NB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SessionManager/Info.plist;
@@ -422,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -440,7 +438,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.12;
+				CURRENT_PROJECT_VERSION = 1.13;
 				DEVELOPMENT_TEAM = 6GB4S5A8NB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SessionManager/Info.plist;
@@ -448,7 +446,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";

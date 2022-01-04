@@ -70,7 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isAdmin = false
     
     #if DEBUG
-    let disableScriptInstall: Bool = CommandLine.arguments.contains("disableScriptInstall")
+    let disableScriptInstall: Bool = CommandLine.arguments.contains("-disableScriptInstall")
     #else
     let disableScriptInstall: Bool = false
     #endif
@@ -637,7 +637,9 @@ rm /tmp/installer.sh
             installPriveledgedTool()
         }
         
+        #if !DEBUG
         LaunchAtLogin.isEnabled = true
+        #endif
         
         let username = NSUserName()
         let path = Bundle.main.path(forResource: "Admins", ofType: "plist")

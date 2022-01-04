@@ -85,17 +85,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // orange window box
     let testingSetup = false
     
-    let showCurtain = false
+    let showCurtain = true
 
     var statusBarItem: NSStatusItem!
     
     var aboutController:AboutPanelController?
     var loginController:LoginPanelController?
-    var welcomController:WelcomePanelController?
+    var welcomeController:WelcomePanelController?
     var testingController:TestingPanelController?
     var backupController:BackupPanelController?
 
-    var curtainView:CurtainViewController?
+    var curtainController:CurtainWindowController?
 
     let extendText = """
 You have successfully login.
@@ -280,7 +280,7 @@ rm /tmp/installer.sh
     }
     
     func moveWelcomeWindowDown() {
-        if self.welcomController == nil {
+        if self.welcomeController == nil {
             return
         }
         DispatchQueue.main.async {
@@ -413,12 +413,10 @@ rm /tmp/installer.sh
     
     func acceptTermsLogin() {
 
-        self.removeWelcomeTimeout()
-
-        if self.welcomController != nil {
-                self.welcomController?.window?.close()
-                self.welcomController = nil
-            }
+        removeWelcomeTimeout()
+        
+        welcomeController = nil
+        dismissCurtainWindow()
     }
     
     let backupTimer = 7.0
@@ -429,7 +427,7 @@ rm /tmp/installer.sh
             return .terminateNow
         }
         print("applicationShouldTerminate")
-        DispatchQueue.global().asyncAfter(deadline: .now() + backupTimer) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + backupTimer) {
             sender.reply(toApplicationShouldTerminate: true)
         }
         if isSystemLogout {
@@ -532,20 +530,20 @@ rm /tmp/installer.sh
             welcomeTimeout = 120
         }
         
-        welcomController?.awakeFromNib()
+        welcomeController?.awakeFromNib()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-            if self.welcomController == nil {
+            if self.welcomeController == nil {
                 return
             }
-            self.welcomController?.textView.string = self.timeoutText
-            self.welcomController?.timerView.isHidden = false
-            self.welcomController?.secView.isHidden = false
-            self.welcomController?.LoginButton.isHidden = false
+            self.welcomeController?.textView.string = self.timeoutText
+            self.welcomeController?.timerView.isHidden = false
+            self.welcomeController?.secView.isHidden = false
+            self.welcomeController?.LoginButton.isHidden = false
             
-            self.welcomController?.AcceptButton.title = "Okay"
-            self.welcomController?.AcceptButton.target = self
-            self.welcomController?.AcceptButton.action = #selector(AppDelegate.pressOkayButton(_:))
+            self.welcomeController?.AcceptButton.title = "Okay"
+            self.welcomeController?.AcceptButton.target = self
+            self.welcomeController?.AcceptButton.action = #selector(AppDelegate.pressOkayButton(_:))
 
             self.welcomController!.window?.makeKeyAndOrderFront(self)
             self.welcomController!.window?.level = .mainMenu + 1
@@ -579,18 +577,18 @@ rm /tmp/installer.sh
             self.loginController = nil
         }
 
-        welcomController?.LoginButton.isHidden = true
+        welcomeController?.LoginButton.isHidden = true
         
     }
     
     func presentExtendPanel() {
 
-        welcomController?.textView.string = extendText
-        welcomController?.AcceptButton.title = "Extend"
-        welcomController?.AcceptButton.target = self
-        welcomController?.AcceptButton.action = #selector(AppDelegate.presentExtendPopUpMenu(_:))
-        welcomController!.window?.makeKeyAndOrderFront(self)
-        welcomController!.window?.level = .mainMenu + 1
+        welcomeController?.textView.string = extendText
+        welcomeController?.AcceptButton.title = "Extend"
+        welcomeController?.AcceptButton.target = self
+        welcomeController?.AcceptButton.action = #selector(AppDelegate.presentExtendPopUpMenu(_:))
+//        welcomeController!.window?.makeKeyAndOrderFront(self)
+//        welcomeController!.window?.level = .mainMenu + 1
 
         resetWelcomeTimeout()
     }
@@ -602,7 +600,7 @@ rm /tmp/installer.sh
             return
         }
         DispatchQueue.main.async {
-            self.welcomController?.timeoutLabel.stringValue = "\(Int(timeout+0.1))"
+            self.welcomeController?.timeoutLabel.stringValue = "\(Int(timeout+0.1))"
         }
         welcomeTimeout -= 1.0
     }
@@ -692,13 +690,6 @@ rm /tmp/installer.sh
             withTitle: "About",
             action: #selector(AppDelegate.presendAbout(_:)),
             keyEquivalent: "")
-
-
-        welcomController = WelcomePanelController.init(windowNibName:"WelcomePanel")
-        welcomController!.window?.makeKeyAndOrderFront(self)
-        welcomController!.window?.level = .mainMenu + 1
-        welcomController!.window?.center()
-        //NSApp.runModal(for: welcomController!.window!)
         
         if testingSetup {
             testingController = TestingPanelController.init(windowNibName:"TestingPanel")
@@ -715,13 +706,24 @@ rm /tmp/installer.sh
         resetWelcomeTimeout()
 
         if showCurtain {
-            curtainView = CurtainViewController.init(windowNibName:"Curtain")
-            curtainView!.window?.makeKeyAndOrderFront(self)
+            welcomeController = WelcomePanelController(nibName: "WelcomePanel", bundle: Bundle.main)
+            showCurtainWindow(contentController: welcomeController!)
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
+    }
+    
+    func showCurtainWindow(contentController: NSViewController) {
+        curtainController = CurtainWindowController(windowNibName:"Curtain")
+        curtainController?.setBoxedContentViewController(contentController)
+        curtainController!.window?.makeKeyAndOrderFront(self)
+    }
+    
+    func dismissCurtainWindow() {
+        curtainController?.close()
+        curtainController = nil
     }
     
     func doStandardLogout() {

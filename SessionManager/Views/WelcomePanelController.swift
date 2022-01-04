@@ -6,19 +6,9 @@
 //
 
 import Cocoa
-class Curtain: NSWindow {
-    override var acceptsFirstResponder: Bool {
-        return false
-    }
-    func ignoresMouseEvents() -> Bool {
-        return true
-    }
-}
 
-class WelcomePanelController: NSWindowController {
-
-    weak var appDelegate:AppDelegate!
-    var curtain : Curtain?
+class WelcomePanelController: NSViewController {
+    weak var appDelegate: AppDelegate!
     
     @IBOutlet weak var LoginButton: NSButton!
     @IBOutlet weak var AcceptButton: NSButton!
@@ -39,7 +29,6 @@ class WelcomePanelController: NSWindowController {
         if appDelegate == nil {
             print("Error: no app delegate")
         }
-        self.window?.isMovable = true
         
         self.AcceptButton.title = "Accept"
         self.AcceptButton.target = self
@@ -60,14 +49,5 @@ class WelcomePanelController: NSWindowController {
 
         self.appDelegate.acceptTermsLogin()
 
-    }
-
-    override func windowDidLoad() {
-
-        curtain = Curtain.init(contentRect: NSScreen.main?.visibleFrame ?? NSRect.init(x: 0.0, y: 0.0, width: 800.0, height: 600.0), styleMask: [], backing: .buffered, defer: false)
-        //curtain!.window?.makeKeyAndOrderFront(self)
-        curtain!.level = .mainMenu
-
-        super.windowDidLoad()
     }
 }

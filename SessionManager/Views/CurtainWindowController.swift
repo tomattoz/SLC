@@ -29,7 +29,7 @@ class CurtainWindowController: NSWindowController, NSWindowDelegate {
             window?.setFrame(NSMakeRect(0, 0, screenSize.width, screenSize.height),
                              display: true)
             curtainContentController.view.setFrameSize(screenSize)
-        }
+        }        
     }
     
     func setBoxedContentViewController(_ vc: NSViewController) {

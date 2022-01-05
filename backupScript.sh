@@ -5,10 +5,8 @@ LOCK=/tmp/trigger
 
 rm $LOCK
 
+# Will touch this file to let the app know the backup finished.
 MONITOR=/tmp/slc-finished
-
-# Where are those preferences anyway?
-hardPrefs="/Applications/SLC.app/Contents/Resources/edu.slc.logoutcleaner"
 
 # And what's the key in there?
 timeKey="keepBackups"
@@ -28,6 +26,12 @@ userDir="/Users/$userToClean"
 # Path to backup Directory
 tmpDir="/Library/Management/userDirBkups"
 
+# plist files directory
+plistsDir="/Library/Management/plists"
+
+# Where are those preferences anyway?
+hardPrefs="$plistsDir/edu.slc.logoutcleaner"
+
 # Primary Local Admin
 localAdmin="helpdesk"
 
@@ -45,6 +49,8 @@ timeS=`date ''+%m-%d-%y_%H.%M.%S''`
 
 # Create the Backup Directory
 mkdir -m 755 "$tmpDir"
+
+mkdir -m 755 "$plistsDir"
 
 # Set a variable for the whole path to the backups
 fullTmpDir="$tmpDir/prevuser.$userToClean.$timeS"

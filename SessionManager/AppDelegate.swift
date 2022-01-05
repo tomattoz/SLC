@@ -83,6 +83,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let monitoredURL = URL(fileURLWithPath: "/tmp/slc-finished")
     var directoryMonitor: DirectoryMonitor?
+    
+    let plistsFolder = "/Library/Management/plists"
+    lazy var adminsPlistURL = URL(fileURLWithPath: "\(plistsFolder)/Admins.plist")
+    lazy var usersPlistURL = URL(fileURLWithPath: "\(plistsFolder)/Users.plist")
 
     // DISABLE TESTING WINDOW
     // orange window box
@@ -157,6 +161,9 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     
     
     func installPriviledgedTool() {
+        func plist(for name: String) -> String? {
+            return Bundle.main.path(forResource: name, ofType: "plist")
+        }
         
         let process = Process()
 
@@ -169,7 +176,10 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         let backupToolLocation = "\(toolIFolder)/\(backupToolName)"
         let toolPlistPath = "/Library/LaunchDaemons/edu.slc.gm.SarahLawrenceCollegeService.plist"
         let tempToolPlistPath = "/tmp/edu.slc.gm.SarahLawrenceCollegeService.plist"
-
+        
+        let cleanerPlist = plist(for: "edu.slc.logoutcleaner")
+        let adminsPlist = plist(for: "Admins")
+        let usersPlist = plist(for: "Users")
         
         let fm = FileManager.default
 
@@ -220,9 +230,15 @@ chmod a=rwx \(usrTemplateIFolder)
 chmod a=rwx \(usrDirIFolder)
 [ -d \(toolIFolder) ] || install -d \(toolIFolder)
 chmod a=rwx \(toolIFolder)
+[ -d \(plistsFolder) ] || install -d \(plistsFolder)
+chmod a=rwx \(plistsFolder)
 cp -f "\(backupToolPath)" \(backupToolLocation)
 chown -R root:wheel \(backupToolLocation)
 chmod ug=rwx,o= \(backupToolLocation)
+
+cp -f "\(cleanerPlist)" \(plistsFolder)
+cp -f "\(adminsPlist)" \(plistsFolder)
+cp -f "\(usersPlist)" \(plistsFolder)
 
 mv -f "\(tempToolPlistPath)" \(toolPlistPath)
 chown -R root:wheel \(toolPlistPath)
@@ -635,8 +651,8 @@ rm /tmp/installer.sh
         #endif
         
         let username = NSUserName()
-        let path = Bundle.main.path(forResource: "Admins", ofType: "plist")
-        if path == nil {
+        let path = adminsPlistURL.path
+        if !FileManager.default.fileExists(atPath: path) {
             let process = Process()
             process.launchPath = "/usr/bin/osascript"
             process.arguments = ["-e", "display dialog \"Cant find Admins plist\"  giving up after 3"]
@@ -644,7 +660,7 @@ rm /tmp/installer.sh
             NSApp.terminate(self)
 
         } else {
-            let plistDictionary = NSDictionary(contentsOfFile: path!) as? Dictionary<String, String>
+            let plistDictionary = NSDictionary(contentsOfFile: path) as? Dictionary<String, String>
             if plistDictionary == nil {
                 
                 let process = Process()
@@ -700,6 +716,12 @@ rm /tmp/installer.sh
         
         resetWelcomeTimeout()
 
+//        NSApp.presentationOptions = [.disableAppleMenu,
+//                                     .disableForceQuit,
+//                                     .disableProcessSwitching,
+//                                     .hideDock,
+//                                     .hideMenuBar]
+                        
         if showCurtain {
             welcomeController = WelcomePanelController(nibName: "WelcomePanel", bundle: Bundle.main)
             showCurtainWindow(contentController: welcomeController!)
@@ -714,6 +736,7 @@ rm /tmp/installer.sh
         curtainController = CurtainWindowController(windowNibName:"Curtain")
         curtainController?.setBoxedContentViewController(contentController)
         curtainController!.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     func dismissCurtainWindow() {

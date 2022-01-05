@@ -49,8 +49,8 @@ class LoginPanelController: NSWindowController, NSTextFieldDelegate, NSControlTe
         }
         self.window?.isMovable = true
         
-        let path = Bundle.main.path(forResource: "Users", ofType: "plist")
-        if path == nil {
+        let path = appDelegate.usersPlistURL.path
+        if !FileManager.default.fileExists(atPath: path) {
             let process = Process()
             process.launchPath = "/usr/bin/osascript"
             process.arguments = ["-e", "display dialog \"Cant find Users plist\"  giving up after 3"]
@@ -58,7 +58,7 @@ class LoginPanelController: NSWindowController, NSTextFieldDelegate, NSControlTe
             appDelegate.cancelLogin(true)
 
         } else {
-            let plistDictionary = NSDictionary(contentsOfFile: path!) as? Dictionary<String, String>
+            let plistDictionary = NSDictionary(contentsOfFile: path) as? Dictionary<String, String>
             if plistDictionary == nil {
                 
                 let process = Process()

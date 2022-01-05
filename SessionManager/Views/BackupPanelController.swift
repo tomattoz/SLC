@@ -7,14 +7,13 @@
 
 import Cocoa
 
-class BackupPanelController: NSWindowController {
+class BackupPanelController: NSViewController {
 
-    @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet private var progress: NSProgressIndicator!
     
-    override func windowDidLoad() {
-        super.windowDidLoad()
+    override func viewDidAppear() {
+        super.viewDidAppear()
 
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        progress.startAnimation(self)
     }
-    
 }

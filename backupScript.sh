@@ -5,6 +5,8 @@ LOCK=/tmp/trigger
 
 rm $LOCK
 
+MONITOR=/tmp/slc-finished
+
 # Where are those preferences anyway?
 hardPrefs="/Applications/SLC.app/Contents/Resources/edu.slc.logoutcleaner"
 
@@ -96,5 +98,8 @@ echo %100 "Complete. Logging out."
 #echo find "$tmpDir" -type d -Btime +48h -name 20\* -maxdepth 1
 #find "$tmpDir" -type d -Btime +48h -name 20\* -maxdepth 1 -exec rm -r {} \;
 find "$tmpDir" -path *prevuser* -type d -mtime +$keepBackups -depth 1 -exec rm -rf {} \;
+
+# Notify app the backup has finished.
+touch "$MONITOR"
 
 exit 0

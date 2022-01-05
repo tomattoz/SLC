@@ -80,6 +80,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var welcomeTimer:Timer?
     
     var idleTimer = IdleTimer()
+    
+    let monitoredURL = URL(fileURLWithPath: "/tmp/slc-finished")
+    var directoryMonitor: DirectoryMonitor?
 
     // DISABLE TESTING WINDOW
     // orange window box
@@ -121,7 +124,10 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     func doBackup() {
-
+        // Start monitoring /tmp for changes.
+        directoryMonitor = DirectoryMonitor(url: monitoredURL.deletingLastPathComponent())
+        directoryMonitor?.startMonitoring()
+        
         do {
             try "\(NSUserName())\n".write(toFile: "/tmp/trigger", atomically: true, encoding: .utf8)
         }
@@ -150,7 +156,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     
-    func installPriveledgedTool() {
+    func installPriviledgedTool() {
         
         let process = Process()
 
@@ -283,14 +289,14 @@ rm /tmp/installer.sh
         if self.welcomeController == nil {
             return
         }
-        DispatchQueue.main.async {
-            self.welcomController?.window?.center()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                var frameOrigin = self.welcomController?.window?.frame.origin
-                frameOrigin?.y -= 260.0
-                self.welcomController?.window?.setFrameOrigin(frameOrigin!)
-            })
-        }
+//        DispatchQueue.main.async {
+//            self.welcomeController?.window?.center()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+//                var frameOrigin = self.welcomeController?.window?.frame.origin
+//                frameOrigin?.y -= 260.0
+//                self.welcomeController?.window?.setFrameOrigin(frameOrigin!)
+//            })
+//        }
     }
     func cancelLogin(_ warning:Bool) {
         
@@ -368,7 +374,7 @@ rm /tmp/installer.sh
 
     @IBAction func pressOkayButton(_ sender: MultiplierMenuItem!) {
 
-        self.welcomController?.window?.close()
+//        self.welcomeController?.window?.close()
         
         if welcomeTimer != nil {
             welcomeTimer?.invalidate()
@@ -400,13 +406,12 @@ rm /tmp/installer.sh
     
     func completeLogin() {
         
-        if welcomController == nil {
-            welcomController = WelcomePanelController.init(windowNibName:"WelcomePanel")
-            welcomController!.window?.makeKeyAndOrderFront(self)
-            welcomController!.window?.level = .mainMenu + 1
-            welcomController!.window?.center()
-
+        if welcomeController == nil {
+            welcomeController = WelcomePanelController(nibName: "WelcomePanel",
+                                                       bundle: Bundle.main)
         }
+        
+        showCurtainWindow(contentController: welcomeController!)
 
         self.presentExtendPanel()
     }
@@ -418,18 +423,12 @@ rm /tmp/installer.sh
         welcomeController = nil
         dismissCurtainWindow()
     }
-    
-    let backupTimer = 7.0
-    
+        
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-
         if isAdmin {
             return .terminateNow
         }
-        print("applicationShouldTerminate")
-        DispatchQueue.main.asyncAfter(deadline: .now() + backupTimer) {
-            sender.reply(toApplicationShouldTerminate: true)
-        }
+        
         if isSystemLogout {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) { [self] in
                 let pids = Processes.listAllPids()
@@ -453,29 +452,29 @@ rm /tmp/installer.sh
             self.acceptTermsLogin()
             
             if self.backupController == nil {
-                self.backupController = BackupPanelController.init(windowNibName:"BackupPanel")
+                self.backupController = BackupPanelController(nibName: "BackupPanel",
+                                                              bundle: Bundle.main)
             }
-            self.backupController!.window?.makeKeyAndOrderFront(self)
-            self.backupController!.window?.level = .mainMenu + 1
-            self.backupController!.window?.center()
-            self.backupController?.progress.startAnimation(self)
+            
+            self.showCurtainWindow(contentController: self.backupController!)
 
             //printPIDSInfo(pids: pids)
         }
         
-        return.terminateLater
+        return .terminateLater
     }
     var isSystemLogout = true
     func doLogout() {
+        dismissCurtainWindow()
+        welcomeController = nil
+
         //Start backup
         DispatchQueue.global().sync {
             self.doBackup()
         }
 
         isSystemLogout = false
-        if welcomController != nil && welcomController?.window != nil {
-            welcomController?.window?.close()
-        }
+                
         //acceptTermsLogin()
         
         self.removeWelcomeTimeout()
@@ -495,13 +494,6 @@ rm /tmp/installer.sh
         
         loginController!.window?.makeKeyAndOrderFront(self)
         loginController!.window?.level = .mainMenu + 1
-//        if welcomeController != nil {
-//            let welcomeFrame = (welcomeController!.window?.frame)!
-//            loginController!.window?.setFrameOrigin(NSPoint.init(x: welcomeFrame.origin.x + (welcomeFrame.size.width * 1.0 + 20.0), y: welcomeFrame.origin.y + welcomeFrame.height - (loginController!.window?.frame.height)!))
-//        } else {
-//            loginController!.window?.center()
-//        }
-        
         loginController?.window?.center()
 
         loginController?.setup()
@@ -522,8 +514,9 @@ rm /tmp/installer.sh
 
     func openWelcomePanel() {
         
-        if welcomController == nil {
-            welcomController = WelcomePanelController.init(windowNibName:"WelcomePanel")
+        if welcomeController == nil {
+            welcomeController = WelcomePanelController(nibName: "WelcomePanel",
+                                                       bundle: Bundle.main)
         }
         
         if welcomeTimer != nil {
@@ -547,9 +540,7 @@ rm /tmp/installer.sh
             self.welcomeController?.AcceptButton.target = self
             self.welcomeController?.AcceptButton.action = #selector(AppDelegate.pressOkayButton(_:))
 
-            self.welcomController!.window?.makeKeyAndOrderFront(self)
-            self.welcomController!.window?.level = .mainMenu + 1
-            self.welcomController!.window?.center()
+            self.showCurtainWindow(contentController: self.welcomeController!)
 
             self.resetWelcomeTimeout()
         })
@@ -589,8 +580,6 @@ rm /tmp/installer.sh
         welcomeController?.AcceptButton.title = "Extend"
         welcomeController?.AcceptButton.target = self
         welcomeController?.AcceptButton.action = #selector(AppDelegate.presentExtendPopUpMenu(_:))
-//        welcomeController!.window?.makeKeyAndOrderFront(self)
-//        welcomeController!.window?.level = .mainMenu + 1
 
         resetWelcomeTimeout()
     }
@@ -632,13 +621,17 @@ rm /tmp/installer.sh
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Cleanup monitored file.
+        _ = try? FileManager.default.removeItem(at: monitoredURL)
         
         if !disableScriptInstall {
-            installPriveledgedTool()
+            installPriviledgedTool()
         }
         
         #if !DEBUG
-        LaunchAtLogin.isEnabled = true
+        // Note: while there's a launch agent that launches the app on login,
+        // the following line should be commented out.
+        //LaunchAtLogin.isEnabled = true
         #endif
         
         let username = NSUserName()
@@ -759,5 +752,18 @@ rm /tmp/installer.sh
             AESendMode(kAENormalPriority),
             kAEDefaultTimeout
         )
+    }
+}
+
+extension AppDelegate: DirectoryMonitorDelegate {
+    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        if FileManager.default.fileExists(atPath: monitoredURL.path) {
+            directoryMonitor.stopMonitoring()
+            _ = try? FileManager.default.removeItem(at: monitoredURL)
+            
+            DispatchQueue.main.async {
+                NSApp.reply(toApplicationShouldTerminate: true)
+            }
+        }
     }
 }

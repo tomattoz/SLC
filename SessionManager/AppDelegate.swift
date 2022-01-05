@@ -177,9 +177,11 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         let toolPlistPath = "/Library/LaunchDaemons/edu.slc.gm.SarahLawrenceCollegeService.plist"
         let tempToolPlistPath = "/tmp/edu.slc.gm.SarahLawrenceCollegeService.plist"
         
-        let cleanerPlist = plist(for: "edu.slc.logoutcleaner")
-        let adminsPlist = plist(for: "Admins")
-        let usersPlist = plist(for: "Users")
+        guard let cleanerPlist = plist(for: "edu.slc.logoutcleaner"),
+              let adminsPlist = plist(for: "Admins"),
+              let usersPlist = plist(for: "Users") else {
+                  fatalError("Could not access bundled plist files.")
+              }
         
         let fm = FileManager.default
 

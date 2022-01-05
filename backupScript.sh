@@ -7,6 +7,7 @@ rm $LOCK
 
 # Will touch this file to let the app know the backup finished.
 MONITOR=/tmp/slc-finished
+rm $MONITOR
 
 # And what's the key in there?
 timeKey="keepBackups"

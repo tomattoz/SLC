@@ -640,7 +640,7 @@ rm /tmp/installer.sh
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Cleanup monitored file.
-        _ = try? FileManager.default.removeItem(at: monitoredURL)
+        deleteMonitoredFiled()
         
         if !disableScriptInstall {
             installPriviledgedTool()
@@ -659,6 +659,7 @@ rm /tmp/installer.sh
             process.launchPath = "/usr/bin/osascript"
             process.arguments = ["-e", "display dialog \"Cant find Admins plist\"  giving up after 3"]
             process.launch()
+            self.isAdmin = true
             NSApp.terminate(self)
 
         } else {
@@ -669,10 +670,11 @@ rm /tmp/installer.sh
                 process.launchPath = "/usr/bin/osascript"
                 process.arguments = ["-e", "display dialog \"Error reading Admins plist\"  giving up after 3"]
                 process.launch()
+                self.isAdmin = true
                 NSApp.terminate(self)
             } else {
                 for record in  plistDictionary!.keys {
-                    if username.localizedCaseInsensitiveContains(record) {
+                    if username.localizedCaseInsensitiveCompare(record) == .orderedSame {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             let process = Process()
                             process.launchPath = "/usr/bin/osascript"
@@ -746,6 +748,19 @@ rm /tmp/installer.sh
         curtainController = nil
     }
     
+    func deleteMonitoredFile() {
+        do {
+            try FileManager.default.removeItem(at: monitoredURL)
+        } catch {
+            // Try to remove by calling "rm -f".
+            _ = try? Process.run(URL(fileURLWithPath: "/bin/rm"),
+                                 arguments: ["-f",
+                                             monitoredURL.path]) { proc in }
+            let tempURL = monitoredURL.deletingLastPathComponent().appendingPathComponent(UUID().uuidString)
+            _ = try? FileManager.default.moveItem(at: monitoredURL, to: tempURL)
+        }
+    }
+    
     func doStandardLogout() {
         var targetDesc: AEAddressDesc = AEAddressDesc.init()
         var psn = ProcessSerialNumber(highLongOfPSN: UInt32(0), lowLongOfPSN: UInt32(kSystemProcess))
@@ -784,7 +799,7 @@ extension AppDelegate: DirectoryMonitorDelegate {
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
         if FileManager.default.fileExists(atPath: monitoredURL.path) {
             directoryMonitor.stopMonitoring()
-            _ = try? FileManager.default.removeItem(at: monitoredURL)
+            deleteMonitoredFile()
             
             DispatchQueue.main.async {
                 NSApp.reply(toApplicationShouldTerminate: true)

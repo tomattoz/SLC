@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		619B784F2787567F00CB38F4 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619B784E2787567F00CB38F4 /* AboutPanel.xib */; };
 		7C2B5B3E2629D31000538114 /* RoundedButtonCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */; };
 		7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B442629DB5F00538114 /* TestingPanelController.swift */; };
 		7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2B5B482629DB7200538114 /* TestingPanel.xib */; };
@@ -32,11 +33,11 @@
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
 		B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E172784D4F4008992E9 /* CurtainContentController.xib */; };
 		B7858E1B2784DC81008992E9 /* OpaqueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E1A2784DC81008992E9 /* OpaqueBox.swift */; };
-		B7858E1D2784F733008992E9 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E1C2784F733008992E9 /* AboutPanel.xib */; };
 		B7858E1F2785C40F008992E9 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E1E2785C40F008992E9 /* DirectoryMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		619B784E2787567F00CB38F4 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
 		7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonCellCell.swift; sourceTree = "<group>"; };
 		7C2B5B442629DB5F00538114 /* TestingPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingPanelController.swift; sourceTree = "<group>"; };
 		7C2B5B482629DB7200538114 /* TestingPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingPanel.xib; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		B7858E162784D4F4008992E9 /* CurtainContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainContentController.swift; sourceTree = "<group>"; };
 		B7858E172784D4F4008992E9 /* CurtainContentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurtainContentController.xib; sourceTree = "<group>"; };
 		B7858E1A2784DC81008992E9 /* OpaqueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpaqueBox.swift; sourceTree = "<group>"; };
-		B7858E1C2784F733008992E9 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
 		B7858E1E2785C40F008992E9 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +121,7 @@
 		7CCAB0522624448000917D07 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B7858E1C2784F733008992E9 /* AboutPanel.xib */,
+				619B784E2787567F00CB38F4 /* AboutPanel.xib */,
 				7C6DBE932631D3A10019D97C /* AboutPanelController.swift */,
 				7CDF32602644627500478813 /* BackupPanel.xib */,
 				7CDF325F2644627500478813 /* BackupPanelController.swift */,
@@ -218,8 +218,8 @@
 				7C61B14026279B2000D76010 /* backupScript.sh in Resources */,
 				7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */,
 				950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */,
+				619B784F2787567F00CB38F4 /* AboutPanel.xib in Resources */,
 				7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */,
-				B7858E1D2784F733008992E9 /* AboutPanel.xib in Resources */,
 				7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

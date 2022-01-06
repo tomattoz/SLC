@@ -4,6 +4,24 @@
 <dict>
 	<key>Helpdesk</key>
 	<string>anything</string>
+	<key>helpdesk</key>
+	<string></string>
+	<key>help desk</key>
+	<string></string>
+	<key>Help Desk</key>
+	<string></string>
+	<key>HelpDesk</key>
+	<string></string>
+	<key>FlimAdmin</key>
+	<string></string>
+	<key>Flimadmin</key>
+	<string></string>
+	<key>Flim Admin</key>
+	<string></string>
+	<key>Film Admin</key>
+	<string></string>
+	<key>FilmAdmin</key>
+	<string></string>
 	<key>ExampleUser</key>
 	<string></string>
 	<key>oleg</key>

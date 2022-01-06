@@ -9,6 +9,9 @@ rm $LOCK
 MONITOR=/tmp/slc-finished
 rm $MONITOR
 
+#Makes the userDirBkups if it doesn't exist
+mkdir -p /Library/Management/userDirBkups
+
 # And what's the key in there?
 timeKey="keepBackups"
 
@@ -104,7 +107,8 @@ echo %100 "Complete. Logging out."
 #echo folders to delete
 #echo find "$tmpDir" -type d -Btime +48h -name 20\* -maxdepth 1
 #find "$tmpDir" -type d -Btime +48h -name 20\* -maxdepth 1 -exec rm -r {} \;
-find "$tmpDir" -path *prevuser* -type d -mtime +$keepBackups -depth 1 -exec rm -rf {} \;
+#find "$tmpDir" -path *prevuser* -type d -mtime +2 -depth 1 -exec rm -rf {} \;
+find /Library/Management/userDirBkups -type d -mtime +2 -exec rm -rf {} \;
 
 # Notify app the backup has finished.
 touch "$MONITOR"

@@ -60,9 +60,12 @@
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="m5b-gW-o06"/>
                     </imageView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-NF-C3Y">
-                        <rect key="frame" x="184" y="89" width="86" height="71"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-NF-C3Y">
+                        <rect key="frame" x="103" y="89" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="JWt-ZB-Qfr"/>
+                            <constraint firstAttribute="height" constant="64" id="xPb-Dk-IfN"/>
+                        </constraints>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="xzS-zp-iPu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -91,6 +94,7 @@
                     <constraint firstItem="PML-IG-PM7" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="7xT-Ut-cpZ"/>
                     <constraint firstItem="iTI-0n-EgK" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="AlV-zP-67H"/>
                     <constraint firstItem="5mw-XW-2yc" firstAttribute="top" secondItem="iTI-0n-EgK" secondAttribute="bottom" constant="1" id="JUe-8W-KZy"/>
+                    <constraint firstItem="yeU-NF-C3Y" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="MXL-27-pfX"/>
                     <constraint firstItem="iTI-0n-EgK" firstAttribute="top" secondItem="PML-IG-PM7" secondAttribute="bottom" constant="11" id="PGr-fi-bSs"/>
                     <constraint firstItem="ZAU-54-1qS" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="SQ0-LQ-rH2"/>
                     <constraint firstAttribute="bottom" secondItem="ZAU-54-1qS" secondAttribute="bottom" constant="20" symbolic="YES" id="XDu-21-HLN"/>

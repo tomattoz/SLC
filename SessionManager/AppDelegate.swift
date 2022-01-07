@@ -391,8 +391,7 @@ rm /tmp/installer.sh
     }
 
     @IBAction func pressOkayButton(_ sender: MultiplierMenuItem!) {
-
-//        self.welcomeController?.window?.close()
+        dismissCurtainWindow()
         
         if welcomeTimer != nil {
             welcomeTimer?.invalidate()
@@ -532,10 +531,12 @@ rm /tmp/installer.sh
 
     func openWelcomePanel() {
         
-        if welcomeController == nil {
-            welcomeController = WelcomePanelController(nibName: "WelcomePanel",
-                                                       bundle: Bundle.main)
+        if welcomeController != nil {
+            dismissCurtainWindow()
         }
+        
+        welcomeController = WelcomePanelController(nibName: "WelcomePanel",
+                                                   bundle: Bundle.main)
         
         if welcomeTimer != nil {
             welcomeTimer?.invalidate()
@@ -543,12 +544,13 @@ rm /tmp/installer.sh
             welcomeTimeout = 120
         }
         
-        welcomeController?.awakeFromNib()
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
             if self.welcomeController == nil {
                 return
             }
+
+            self.showCurtainWindow(contentController: self.welcomeController!)
+
             self.welcomeController?.textView.string = self.timeoutText
             self.welcomeController?.timerView.isHidden = false
             self.welcomeController?.secView.isHidden = false
@@ -557,8 +559,6 @@ rm /tmp/installer.sh
             self.welcomeController?.AcceptButton.title = "Okay"
             self.welcomeController?.AcceptButton.target = self
             self.welcomeController?.AcceptButton.action = #selector(AppDelegate.pressOkayButton(_:))
-
-            self.showCurtainWindow(contentController: self.welcomeController!)
 
             self.resetWelcomeTimeout()
         })
@@ -640,7 +640,7 @@ rm /tmp/installer.sh
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Cleanup monitored file.
-        deleteMonitoredFiled()
+        deleteMonitoredFile()
         
         if !disableScriptInstall {
             installPriviledgedTool()

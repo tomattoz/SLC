@@ -12,7 +12,7 @@ class IdleTimer: NSObject {
 
     var idleTimeoutManager: Timer?
 
-    let defaultTimeout: TimeInterval = 60
+    let defaultTimeout: TimeInterval = 1800
     lazy var idleTimeout = defaultTimeout
     @objc dynamic var secIdle = NSNumber(integerLiteral: 0)
 

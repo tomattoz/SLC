@@ -95,7 +95,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #else
     let testingSetup: Bool = false
     #endif
-    
+
+    #if DEBUG
+    let fakeLogout: Bool = CommandLine.arguments.contains("-fakeLogout")
+    #else
+    let fakeLogout: Bool = false
+    #endif
+
     let showCurtain = true
 
     var statusBarItem: NSStatusItem!
@@ -496,9 +502,15 @@ rm /tmp/installer.sh
         self.removeWelcomeTimeout()
         print("logging out ...")
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1.0, execute: {
-            self.doStandardLogout() // fix
-        })
+        if !self.fakeLogout {
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1.0, execute: {
+                self.doStandardLogout() // fix
+            })
+        } else {
+            print("*** FAKE LOGOUT ***")
+            self.isAdmin = true
+            NSApp.terminate(self)
+        }
 
         //stopAllprocesses()
         

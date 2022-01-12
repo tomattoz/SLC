@@ -7,21 +7,21 @@
 
 import Cocoa
 
-class IdleTimer:NSObject {
+class IdleTimer: NSObject {
+    var testingTimeMultiplier: Int = 1
 
-    var testingTimeMultiplier:Int = 1
+    var idleTimeoutManager: Timer?
 
-    var idleTimeoutManager:Timer?
-
-    var idleTimeout = CFTimeInterval(1800)
+    let defaultTimeout: TimeInterval = 60
+    lazy var idleTimeout = defaultTimeout
     @objc dynamic var secIdle = NSNumber(integerLiteral: 0)
 
     override init() {
         super.init()
-        startIdleTimer()
+        start()
     }
     
-    func startIdleTimer() {
+    func start() {
         secIdle = 0
         idleTimeoutManager = Timer.scheduledTimer(withTimeInterval: 1.0 / Double(testingTimeMultiplier > 10 ? testingTimeMultiplier : 10), repeats: true, block: { timer in
             // fire
@@ -29,7 +29,7 @@ class IdleTimer:NSObject {
                 let idle = CGEventSource.secondsSinceLastEventType(CGEventSourceStateID.hidSystemState, eventType: CGEventType(rawValue: ~0)!) * Double(self.testingTimeMultiplier)
                                 
                 self.secIdle = NSNumber.init(value: idle < self.idleTimeout ? CFTimeInterval(idle) : self.idleTimeout )
-                // print(idle.description + " : " + self.secIdle.description + " : " + self.idleTimeout.description + " mult: " + self.testingTimeMultiplier.description)
+                //print(idle.description + " : " + self.secIdle.description + " : " + self.idleTimeout.description + " mult: " + self.testingTimeMultiplier.description)
 
             } else {
                 self.secIdle = NSNumber(value: self.idleTimeout)
@@ -37,5 +37,15 @@ class IdleTimer:NSObject {
                 timer.invalidate()
             }
         })
+    }
+    
+    func stop() {
+        idleTimeoutManager?.invalidate()
+    }
+    
+    func reset() {
+        stop()
+        idleTimeout = defaultTimeout
+        start()
     }
 }

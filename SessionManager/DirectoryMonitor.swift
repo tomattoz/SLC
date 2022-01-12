@@ -10,7 +10,7 @@ import Foundation
 // Imported from https://github.com/robovm/apple-ios-samples/tree/master/ListerforwatchOSiOSandOSX/Swift/ListerKit
 
 /// A protocol that allows delegates of `DirectoryMonitor` to respond to changes in a directory.
-protocol DirectoryMonitorDelegate: class {
+protocol DirectoryMonitorDelegate: AnyObject {
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor)
 }
 

@@ -76,8 +76,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #endif
 
     // Time out interval in sec
-    var welcomeTimeout:CFTimeInterval = 120
-    var welcomeTimer:Timer?
+    var welcomeTimeout: TimeInterval = 120
+    var welcomeTimer: Timer?
     
     var idleTimer = IdleTimer()
     
@@ -90,7 +90,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // DISABLE TESTING WINDOW
     // orange window box
-    let testingSetup = false
+    #if DEBUG
+    let testingSetup: Bool = CommandLine.arguments.contains("-testing")
+    #else
+    let testingSetup: Bool = false
+    #endif
     
     let showCurtain = true
 
@@ -350,7 +354,7 @@ rm /tmp/installer.sh
     
     @IBAction func selectExtendTime(_ sender: ExtendMenuItem!) {
 
-        idleTimer.idleTimeout = CFTimeInterval(sender.secVal)
+        idleTimer.idleTimeout = TimeInterval(sender.secVal)
         
         acceptTermsLogin()
     }
@@ -378,11 +382,10 @@ rm /tmp/installer.sh
 
         let extendTimeout = idleTimer.idleTimeout
         
-        resetIdleTimer()
+        idleTimer.stop()
         idleTimer.idleTimeout = extendTimeout
-        
         idleTimer.testingTimeMultiplier = sender.multiplierVal
-
+        idleTimer.start()
 
         DispatchQueue.main.async{
             let string = ("Multiplier: \(sender.multiplierVal)x")
@@ -402,19 +405,15 @@ rm /tmp/installer.sh
     }
 
     func resetIdleTimer() {
-        
-        idleTimer.idleTimeoutManager?.invalidate()
         if testingController != nil {
             testingController?.stopObserving()
         }
 
-        idleTimer = IdleTimer()
-        idleTimer.idleTimeout = 1800
-
         if testingController != nil {
             testingController?.multiplierButton.title = "Multiplier: 1x"
         }
-        idleTimer.startIdleTimer()
+        
+        idleTimer.reset()
         
         if testingController != nil {
             testingController?.startObserving()

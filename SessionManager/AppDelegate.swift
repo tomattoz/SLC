@@ -687,10 +687,6 @@ rm /tmp/installer.sh
                 for record in  plistDictionary!.keys {
                     if username.localizedCaseInsensitiveCompare(record) == .orderedSame {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            let process = Process()
-                            process.launchPath = "/usr/bin/osascript"
-                            process.arguments = ["-e", "display dialog \"User '\(username)' is in Admins plist\"  giving up after 3"]
-                            process.launch()
                             self.isAdmin = true
                             NSApp.terminate(self)
                         }

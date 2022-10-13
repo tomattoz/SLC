@@ -12,6 +12,10 @@ class ExtendMenuItem: NSMenuItem {
     var secVal:Int = 120
 }
 
+enum FileCopyError: Error {
+    case fileWatcherDaemonIsMissing
+}
+
 struct Processes {
 
     static func printPIDSInfo(pids:[Int32]) {
@@ -170,6 +174,18 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     
+    fileprivate func copyFileWatcherDaemon(_ backupToolLocation: String,
+                                           _ tempToolPlistPath: String) throws {
+        guard let fileWatcherDaemonURL = Bundle.main.url(forResource: "FileWatcherDaemon",
+                                                         withExtension: "plist") else {
+            throw FileCopyError.fileWatcherDaemonIsMissing
+        }
+        
+        let fileWatcherDaemon = try String(contentsOf: fileWatcherDaemonURL)
+            .replacingOccurrences(of: "$backupToolLocation", with: "\(backupToolLocation)")
+        try fileWatcherDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
+    }
+    
     func installPriviledgedTool() {
         func plist(for name: String) -> String? {
             return Bundle.main.path(forResource: name, ofType: "plist")
@@ -208,27 +224,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             return
         }
 
-
-        let daemonScript = """
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>edu.slc.gm.SarahLawrenceCollegeService</string>
-    <key>KeepAlive</key>
-    <false/>
-    <key>WatchPaths</key>
-    <array>
-       <string>/tmp/trigger</string>
-    </array>
-    <key>ProgramArguments</key>
-    <array>
-        <string>\(backupToolLocation)</string>
-    </array>
-</dict>
-</plist>
-"""
         let installerScript = """
 #!/bin/bash
 
@@ -267,13 +262,14 @@ rm /tmp/installer.sh
                 errorPopup(message: "Can't run installer: \(error.localizedDescription)")
                 return
             }
+
+        // Read the file watcher daemon plist and copy to a temp path for later install.
         do {
-                try daemonScript.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
-            }
-            catch let error {
-                errorPopup(message: "Can't write intermediate launch daemon: \(error.localizedDescription)")
-                return
-            }
+            try copyFileWatcherDaemon(backupToolLocation, tempToolPlistPath)
+        } catch {
+            NSAlert(error: error)
+            return
+        }
 
         var attributes = [FileAttributeKey : Any]()
         attributes[.posixPermissions] = 0o777

@@ -29,6 +29,7 @@
 		7CDF32612644627500478813 /* BackupPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF325F2644627500478813 /* BackupPanelController.swift */; };
 		7CDF32622644627500478813 /* BackupPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDF32602644627500478813 /* BackupPanel.xib */; };
 		950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */; };
+		B75DBCA628F89BDF00166311 /* FileWatcherDaemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */; };
 		B7858DF52784AFCA008992E9 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B7858DF42784AFCA008992E9 /* LaunchAtLogin */; };
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
 		B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E172784D4F4008992E9 /* CurtainContentController.xib */; };
@@ -63,6 +64,7 @@
 		7CDF325F2644627500478813 /* BackupPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPanelController.swift; sourceTree = "<group>"; };
 		7CDF32602644627500478813 /* BackupPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPanel.xib; sourceTree = "<group>"; };
 		950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = edu.slc.logoutcleaner.plist; sourceTree = "<group>"; };
+		B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FileWatcherDaemon.plist; sourceTree = "<group>"; };
 		B7858E162784D4F4008992E9 /* CurtainContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainContentController.swift; sourceTree = "<group>"; };
 		B7858E172784D4F4008992E9 /* CurtainContentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurtainContentController.xib; sourceTree = "<group>"; };
 		B7858E1A2784DC81008992E9 /* OpaqueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpaqueBox.swift; sourceTree = "<group>"; };
@@ -84,7 +86,7 @@
 		7CCAB035262442BF00917D07 = {
 			isa = PBXGroup;
 			children = (
-				7C61B13F26279B2000D76010 /* backupScript.sh */,
+				B75DBCA428F89B7900166311 /* Scripts */,
 				7CCAB040262442BF00917D07 /* SessionManager */,
 				7CCAB03F262442BF00917D07 /* Products */,
 			);
@@ -141,6 +143,15 @@
 			name = Views;
 			path = SessionManager/Views;
 			sourceTree = SOURCE_ROOT;
+		};
+		B75DBCA428F89B7900166311 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				7C61B13F26279B2000D76010 /* backupScript.sh */,
+				B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -222,6 +233,7 @@
 				619B784F2787567F00CB38F4 /* AboutPanel.xib in Resources */,
 				7CCAB08C262480DD00917D07 /* WelcomePanel.xib in Resources */,
 				7CCAB0A2262483F500917D07 /* Curtain.xib in Resources */,
+				B75DBCA628F89BDF00166311 /* FileWatcherDaemon.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

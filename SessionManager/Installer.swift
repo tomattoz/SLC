@@ -27,8 +27,6 @@ struct Installer {
             return Bundle.main.path(forResource: name, ofType: "plist")
         }
                 
-        let useInstallerApp = false
-        //let toolInstallerLocation = "/tmp"
         let toolIFolder = "/Library/Management/.tool"
         let usrDirIFolder = "/Library/Management/userDirBkups"
         let usrTemplateIFolder = "/Library/Management/userTemplate"
@@ -134,6 +132,7 @@ rm /tmp/installer.sh
         process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
         process.launch()
         process.waitUntilExit()
+        
         let status = process.terminationStatus
         if status != 0 {
             throw InstallerError.installerFailed(path: Self.installerPath)

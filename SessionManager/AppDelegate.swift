@@ -12,63 +12,8 @@ class ExtendMenuItem: NSMenuItem {
     var secVal:Int = 120
 }
 
-enum FileCopyError: Error {
-    case fileWatcherDaemonIsMissing
-}
-
-struct Processes {
-
-    static func printPIDSInfo(pids:[Int32]) {
-        for pid in pids {
-            if pid == 0 {
-                continue
-            }
-
-            let cpath = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
-            _ = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
-            proc_pidpath(pid, cpath, UInt32(MAXPATHLEN))
-            
-            guard strlen(cpath) > 0 else {
-                continue
-            }
-
-            let path = String(cString: cpath)
-            _ = URL(fileURLWithPath: path)
-
-            
-            //proc_pidinfo(pid, Int32, UInt64, UnsafeMutableRawPointer!, Int32)
-            let pidInfo = UnsafeMutablePointer<proc_bsdinfo>.allocate(capacity: 1)
-            let InfoSize = Int32(MemoryLayout<proc_bsdinfo>.stride)
-
-            _ = proc_pidinfo(pid, PROC_PIDTBSDINFO, 0, pidInfo, InfoSize)
-            if  InfoSize > 0 {
-                _ = Date(timeIntervalSince1970: TimeInterval(pidInfo.pointee.pbi_start_tvsec))
-                let nm = pidInfo.pointee.pbi_uid
-                print ("\(getpid() == pid ? "******" : "")\(nm) : \(pid) \(path)")
-            }
-
-        }
-    }
-    
-    static func listAllPids() -> [Int32] {
-        let uid = getuid()
-        print("uid: \(String(describing: getuid))")
-        let pnum = proc_listpids(UInt32(PROC_UID_ONLY), uid, nil, 0)
-        //let pnum = proc_listpids(UInt32(PROC_ALL_PIDS), 0, nil, 0)
-        var pids = [pid_t](repeating: 0, count: Int(pnum))
-        
-        _ = pids.withUnsafeMutableBufferPointer { ptr in
-            proc_listpids(UInt32(PROC_UID_ONLY), uid, ptr.baseAddress, pnum * Int32(MemoryLayout<pid_t>.size))
-            //proc_listpids(UInt32(PROC_ALL_PIDS), 0, ptr.baseAddress, pnum * Int32(MemoryLayout<pid_t>.size))
-        }
-
-        return pids
-    }
-}
-
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     @IBOutlet var window: NSWindow!
 
     var isAdmin = false
@@ -78,6 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #else
     let disableScriptInstall: Bool = false
     #endif
+    
+    let install: Bool = CommandLine.arguments.contains("-install")
 
     // Time out interval in sec
     var welcomeTimeout: TimeInterval = 120
@@ -156,129 +103,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     func updateIdleTime() {
-
-    }
-    
-    func installPriviledgedTool() {
-        func plist(for name: String) -> String? {
-            return Bundle.main.path(forResource: name, ofType: "plist")
-        }
-        
-        let process = Process()
-
-        let useInstallerApp = false
-        //let toolInstallerLocation = "/tmp"
-        let toolIFolder = "/Library/Management/.tool"
-        let usrDirIFolder = "/Library/Management/userDirBkups"
-        let usrTemplateIFolder = "/Library/Management/userTemplate"
-        let backupToolName = "backupScript-1.1.2.sh"
-        let backupToolLocation = "\(toolIFolder)/\(backupToolName)"
-        let toolPlistPath = "/Library/LaunchDaemons/edu.slc.gm.SarahLawrenceCollegeService.plist"
-        let tempToolPlistPath = "/tmp/edu.slc.gm.SarahLawrenceCollegeService.plist"
-        
-        guard let cleanerPlist = plist(for: "edu.slc.logoutcleaner"),
-              let adminsPlist = plist(for: "Admins"),
-              let usersPlist = plist(for: "Users") else {
-                  fatalError("Could not access bundled plist files.")
-              }
-        
-        let fm = FileManager.default
-
-        if fm.fileExists(atPath: backupToolLocation) && fm.fileExists(atPath: toolPlistPath) {
-            print("Sarah Lawrence College Manager installed properly")
-            return
-        }
-        
-
-        let installerPath = "/tmp/installer.sh"
-        guard let backupToolPath = Bundle.main.path(forResource: "backupScript.sh", ofType: "") else {
-            
-            errorPopup(message: "\"backupScript.sh\" is missing")
-            return
-        }
-
-        let installerScript = """
-#!/bin/bash
-
-launchctl unload \(toolPlistPath)
-launchctl unload edu.psu.PennSessionManagerService.plist
-rm  /Library/LaunchDaemons/edu.psu.PennSessionManagerService.plist
-
-[ -d \(usrTemplateIFolder) ] || install -d \(usrTemplateIFolder)
-chmod a=rwx \(usrTemplateIFolder)
-[ -d \(usrDirIFolder) ] || install -d \(usrDirIFolder)
-chmod a=rwx \(usrDirIFolder)
-[ -d \(toolIFolder) ] || install -d \(toolIFolder)
-chmod a=rwx \(toolIFolder)
-[ -d \(plistsFolder) ] || install -d \(plistsFolder)
-chmod a=rwx \(plistsFolder)
-cp -f "\(backupToolPath)" \(backupToolLocation)
-chown -R root:wheel \(backupToolLocation)
-chmod ug=rwx,o= \(backupToolLocation)
-
-cp -f "\(cleanerPlist)" \(plistsFolder)
-cp -f "\(adminsPlist)" \(plistsFolder)
-cp -f "\(usersPlist)" \(plistsFolder)
-
-mv -f "\(tempToolPlistPath)" \(toolPlistPath)
-chown -R root:wheel \(toolPlistPath)
-
-launchctl load \(toolPlistPath)
-
-rm /tmp/installer.sh
-"""
-
-        do {
-                try installerScript.write(toFile: installerPath, atomically: true, encoding: .utf8)
-            }
-            catch let error {
-                errorPopup(message: "Can't run installer: \(error.localizedDescription)")
-                return
-            }
-
-        // Read the file watcher daemon plist and copy to a temp path for later install.
-        do {
-            try copyFileWatcherDaemon(backupToolLocation, tempToolPlistPath)
-        } catch {
-            NSAlert(error: error)
-            return
-        }
-
-        var attributes = [FileAttributeKey : Any]()
-        attributes[.posixPermissions] = 0o777
-        do {
-            try fm.setAttributes(attributes, ofItemAtPath: installerPath)
-        }catch let error {
-            errorPopup(message: "Can't install. Permissions error: \(error.localizedDescription)")
-            print("Permissions error: ", error)
-        }
-
-        if useInstallerApp {
-            guard let installerAppURL = Bundle.main.url(forResource: "Sarah Lawrence College Installer", withExtension: "app") else {
-                
-                errorPopup(message: "\"Sarah Lawrence College Installer\" is missing")
-                return
-            }
-
-            do {
-                try NSWorkspace.shared.launchApplication(at: installerAppURL, options: [], configuration: [:])
-
-            } catch let error {
-                errorPopup(message: "error running Sarah Lawrence College Installer: \(error.localizedDescription)")
-                print("error running Sarah Lawrence College Installer: \(error.localizedDescription)")
-            }
-        } else {
-            process.launchPath = "/usr/bin/osascript"
-            process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
-            process.launch()
-            process.waitUntilExit()
-            let status = process.terminationStatus
-            if status != 0 {
-                errorPopup(message: "error running \(installerPath) with status: \(status)")
-                print("error running \(installerPath) with status: \(status)")
-            }
-        }
-
 
     }
     
@@ -622,8 +446,21 @@ rm /tmp/installer.sh
         // Cleanup monitored file.
         deleteMonitoredFile()
         
-        if !disableScriptInstall {
-            installPriviledgedTool()
+        // Run installer automatically or when manually specified.
+        if !disableScriptInstall || (install && !disableScriptInstall ) {
+            do {
+                let installer = Installer(plistsFolder: plistsFolder)
+                try installer.installPriviledgedTool()
+                
+                // If manual installation was specified (through -install argument)
+                // we terminate the app execution after successful install.
+                if install {
+                    NSApp.terminate(self)
+                }
+            } catch {
+                NSAlert(error: error).runModal()
+                return
+            }
         }
         
         #if !DEBUG
@@ -785,19 +622,6 @@ rm /tmp/installer.sh
         process.launch()
         process.waitUntilExit()
     }
-    
-    
-    fileprivate func copyFileWatcherDaemon(_ backupToolLocation: String,
-                                           _ tempToolPlistPath: String) throws {
-        guard let fileWatcherDaemonURL = Bundle.main.url(forResource: "FileWatcherDaemon",
-                                                         withExtension: "plist") else {
-            throw FileCopyError.fileWatcherDaemonIsMissing
-        }
-        
-        let fileWatcherDaemon = try String(contentsOf: fileWatcherDaemonURL)
-            .replacingOccurrences(of: "$backupToolLocation", with: "\(backupToolLocation)")
-        try fileWatcherDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
-    }
 }
 
 extension AppDelegate: DirectoryMonitorDelegate {
@@ -810,5 +634,54 @@ extension AppDelegate: DirectoryMonitorDelegate {
                 NSApp.reply(toApplicationShouldTerminate: true)
             }
         }
+    }
+}
+
+fileprivate struct Processes {
+    static func printPIDSInfo(pids:[Int32]) {
+        for pid in pids {
+            if pid == 0 {
+                continue
+            }
+            
+            let cpath = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
+            _ = UnsafeMutablePointer<CChar>.allocate(capacity: Int(MAXPATHLEN))
+            proc_pidpath(pid, cpath, UInt32(MAXPATHLEN))
+            
+            guard strlen(cpath) > 0 else {
+                continue
+            }
+            
+            let path = String(cString: cpath)
+            _ = URL(fileURLWithPath: path)
+            
+            
+            //proc_pidinfo(pid, Int32, UInt64, UnsafeMutableRawPointer!, Int32)
+            let pidInfo = UnsafeMutablePointer<proc_bsdinfo>.allocate(capacity: 1)
+            let InfoSize = Int32(MemoryLayout<proc_bsdinfo>.stride)
+            
+            _ = proc_pidinfo(pid, PROC_PIDTBSDINFO, 0, pidInfo, InfoSize)
+            if  InfoSize > 0 {
+                _ = Date(timeIntervalSince1970: TimeInterval(pidInfo.pointee.pbi_start_tvsec))
+                let nm = pidInfo.pointee.pbi_uid
+                print ("\(getpid() == pid ? "******" : "")\(nm) : \(pid) \(path)")
+            }
+            
+        }
+    }
+    
+    static func listAllPids() -> [Int32] {
+        let uid = getuid()
+        print("uid: \(String(describing: getuid))")
+        let pnum = proc_listpids(UInt32(PROC_UID_ONLY), uid, nil, 0)
+        //let pnum = proc_listpids(UInt32(PROC_ALL_PIDS), 0, nil, 0)
+        var pids = [pid_t](repeating: 0, count: Int(pnum))
+        
+        _ = pids.withUnsafeMutableBufferPointer { ptr in
+            proc_listpids(UInt32(PROC_UID_ONLY), uid, ptr.baseAddress, pnum * Int32(MemoryLayout<pid_t>.size))
+            //proc_listpids(UInt32(PROC_ALL_PIDS), 0, ptr.baseAddress, pnum * Int32(MemoryLayout<pid_t>.size))
+        }
+        
+        return pids
     }
 }

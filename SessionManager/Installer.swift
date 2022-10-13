@@ -73,6 +73,10 @@ launchctl unload \(backupToolPlistPath)
 launchctl unload edu.psu.PennSessionManagerService.plist
 rm  /Library/LaunchDaemons/edu.psu.PennSessionManagerService.plist
 
+launchctl unload \(cleanupToolPlistPath)
+launchctl unload edu.psu.SarahLawrenceCollegeCleanupDaemon.plist
+rm  /Library/LaunchDaemons/edu.psu.SarahLawrenceCollegeCleanupDaemon.plist
+
 [ -d \(usrTemplateIFolder) ] || install -d \(usrTemplateIFolder)
 chmod a=rwx \(usrTemplateIFolder)
 [ -d \(usrDirIFolder) ] || install -d \(usrDirIFolder)
@@ -81,9 +85,14 @@ chmod a=rwx \(usrDirIFolder)
 chmod a=rwx \(toolIFolder)
 [ -d \(plistsFolder) ] || install -d \(plistsFolder)
 chmod a=rwx \(plistsFolder)
+
 cp -f "\(backupToolPath)" \(backupToolLocation)
 chown -R root:wheel \(backupToolLocation)
 chmod ug=rwx,o= \(backupToolLocation)
+
+cp -f "\(cleanupToolPath)" \(cleanupToolLocation)
+chown -R root:wheel \(cleanupToolLocation)
+chmod ug=rwx,o= \(cleanupToolLocation)
 
 cp -f "\(cleanerPlist)" \(plistsFolder)
 cp -f "\(adminsPlist)" \(plistsFolder)

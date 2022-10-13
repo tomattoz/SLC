@@ -11,6 +11,6 @@
             <string>$cleanupToolLocation</string>
         </array>
         <key>StartInterval</key>
-        <integer>43200</integer>
+        <integer>$interval</integer>
     </dict>
 </plist>

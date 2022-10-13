@@ -52,6 +52,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #else
     let fakeLogout: Bool = false
     #endif
+    
+    let cleanupInterval: Int = 43200 // 12 hours
 
     let showCurtain = true
 
@@ -449,7 +451,8 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         // Run installer automatically or when manually specified.
         if !disableScriptInstall || (install && !disableScriptInstall ) {
             do {
-                let installer = Installer(plistsFolder: plistsFolder)
+                let installer = Installer(plistsFolder: plistsFolder,
+                                          cleanupInterval: cleanupInterval)
                 try installer.installPriviledgedTool()
                 
                 // If manual installation was specified (through -install argument)

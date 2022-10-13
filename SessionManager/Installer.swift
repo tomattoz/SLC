@@ -20,6 +20,7 @@ enum InstallerError: Error {
 struct Installer {
     private static let installerPath = "/tmp/installer.sh"
     let plistsFolder: String
+    let cleanupInterval: Int
 
     func installPriviledgedTool() throws {
         func plist(for name: String) -> String? {
@@ -153,6 +154,7 @@ rm /tmp/installer.sh
         
         let cleanupDaemon = try String(contentsOf: cleanupDaemonURL)
             .replacingOccurrences(of: "$cleanupToolLocation", with: "\(cleanupToolLocation)")
+            .replacingOccurrences(of: "$interval", with: cleanupInterval.description)
         try cleanupDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
     }
 }

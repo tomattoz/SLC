@@ -30,6 +30,8 @@
 		7CDF32622644627500478813 /* BackupPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDF32602644627500478813 /* BackupPanel.xib */; };
 		950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */; };
 		B75DBCA628F89BDF00166311 /* FileWatcherDaemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */; };
+		B75DBCA828F8A8D400166311 /* CleanupDaemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */; };
+		B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA928F8ABA400166311 /* cleanupScript.sh */; };
 		B7858DF52784AFCA008992E9 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = B7858DF42784AFCA008992E9 /* LaunchAtLogin */; };
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
 		B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7858E172784D4F4008992E9 /* CurtainContentController.xib */; };
@@ -65,6 +67,8 @@
 		7CDF32602644627500478813 /* BackupPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPanel.xib; sourceTree = "<group>"; };
 		950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = edu.slc.logoutcleaner.plist; sourceTree = "<group>"; };
 		B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FileWatcherDaemon.plist; sourceTree = "<group>"; };
+		B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CleanupDaemon.plist; sourceTree = "<group>"; };
+		B75DBCA928F8ABA400166311 /* cleanupScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cleanupScript.sh; sourceTree = "<group>"; };
 		B7858E162784D4F4008992E9 /* CurtainContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainContentController.swift; sourceTree = "<group>"; };
 		B7858E172784D4F4008992E9 /* CurtainContentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurtainContentController.xib; sourceTree = "<group>"; };
 		B7858E1A2784DC81008992E9 /* OpaqueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpaqueBox.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			children = (
 				7C61B13F26279B2000D76010 /* backupScript.sh */,
 				B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */,
+				B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */,
+				B75DBCA928F8ABA400166311 /* cleanupScript.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C6F47DF262F7B7700F2DEE9 /* Users.plist in Resources */,
+				B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */,
 				7CCAB044262442C300917D07 /* Assets.xcassets in Resources */,
 				7CDF32622644627500478813 /* BackupPanel.xib in Resources */,
 				7C61B1502627B9A600D76010 /* Sarah Lawrence College Installer.app in Resources */,
@@ -228,6 +235,7 @@
 				7CCAB047262442C300917D07 /* MainMenu.xib in Resources */,
 				B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */,
 				7C61B14026279B2000D76010 /* backupScript.sh in Resources */,
+				B75DBCA828F8A8D400166311 /* CleanupDaemon.plist in Resources */,
 				7C2B5B53262A204900538114 /* LoginPanel.xib in Resources */,
 				950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */,
 				619B784F2787567F00CB38F4 /* AboutPanel.xib in Resources */,

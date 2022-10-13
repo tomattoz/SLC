@@ -158,33 +158,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     func updateIdleTime() {
 
     }
-
-    //Popup with error
-    private func errorPopup(message:String) {
-        
-        // to hide any errors in UI uncomment this
-        // return
-        let process = Process()
-        let string = message.replacingOccurrences(of: "\"", with: "\\\"")
-        let args = ["-e", "display alert \"Sarah Lawrence College Manager\" message \"\(string)\" "]; //buttons {\"OK\"} default button \"OK\""]
-        process.launchPath = "/usr/bin/osascript"
-        process.arguments = args
-        process.launch()
-        process.waitUntilExit()
-    }
-    
-    
-    fileprivate func copyFileWatcherDaemon(_ backupToolLocation: String,
-                                           _ tempToolPlistPath: String) throws {
-        guard let fileWatcherDaemonURL = Bundle.main.url(forResource: "FileWatcherDaemon",
-                                                         withExtension: "plist") else {
-            throw FileCopyError.fileWatcherDaemonIsMissing
-        }
-        
-        let fileWatcherDaemon = try String(contentsOf: fileWatcherDaemonURL)
-            .replacingOccurrences(of: "$backupToolLocation", with: "\(backupToolLocation)")
-        try fileWatcherDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
-    }
     
     func installPriviledgedTool() {
         func plist(for name: String) -> String? {
@@ -795,6 +768,35 @@ rm /tmp/installer.sh
             AESendMode(kAENormalPriority),
             kAEDefaultTimeout
         )
+    }
+    
+    // MARK: - Private Functions
+    
+    //Popup with error
+    private func errorPopup(message:String) {
+        
+        // to hide any errors in UI uncomment this
+        // return
+        let process = Process()
+        let string = message.replacingOccurrences(of: "\"", with: "\\\"")
+        let args = ["-e", "display alert \"Sarah Lawrence College Manager\" message \"\(string)\" "]; //buttons {\"OK\"} default button \"OK\""]
+        process.launchPath = "/usr/bin/osascript"
+        process.arguments = args
+        process.launch()
+        process.waitUntilExit()
+    }
+    
+    
+    fileprivate func copyFileWatcherDaemon(_ backupToolLocation: String,
+                                           _ tempToolPlistPath: String) throws {
+        guard let fileWatcherDaemonURL = Bundle.main.url(forResource: "FileWatcherDaemon",
+                                                         withExtension: "plist") else {
+            throw FileCopyError.fileWatcherDaemonIsMissing
+        }
+        
+        let fileWatcherDaemon = try String(contentsOf: fileWatcherDaemonURL)
+            .replacingOccurrences(of: "$backupToolLocation", with: "\(backupToolLocation)")
+        try fileWatcherDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
     }
 }
 

@@ -153,6 +153,7 @@
 				7CCAB03B262442BF00917D07 /* Frameworks */,
 				7CCAB03C262442BF00917D07 /* Resources */,
 				B7858DF62784B013008992E9 /* Integrate LaunchAtLogin */,
+				B75DBCA328F8958D00166311 /* Set Build Number */,
 				7C61B1572627DD0800D76010 /* ShellScript */,
 			);
 			buildRules = (
@@ -243,6 +244,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#exit 0\nFILE_CP=\"$PROJECT_DIR/../../$TARGETNAME-$CURRENT_PROJECT_VERSION.app\"\nARCHIVE=\"$PROJECT_DIR/../../$TARGETNAME-APP-$CURRENT_PROJECT_VERSION.zip\"\necho cp -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\" \"$FILE_CP\"\n[ -f \"$ARCHIVE\" ] && rm -r \"$ARCHIVE\"\n[ -d \"$FILE_CP\" ] && rm -r \"$FILE_CP\"\ncp -R -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\"  \"$FILE_CP\"\nzip -r \"$ARCHIVE\" \"$FILE_CP\"\n\n\n\n\n\n\n";
+		};
+		B75DBCA328F8958D00166311 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    buildNumber=$(git rev-list --count head)\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\n";
 		};
 		B7858DF62784B013008992E9 /* Integrate LaunchAtLogin */ = {
 			isa = PBXShellScriptBuildPhase;

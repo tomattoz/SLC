@@ -98,8 +98,8 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         do {
             try "\(NSUserName())\n".write(toFile: "/tmp/trigger", atomically: true, encoding: .utf8)
         }
-        catch let error {
-            errorPopup(message: "Can't logout for \(NSUserName()): \(error.localizedDescription)")
+        catch  {
+            NSAlert(error: error).runModal()
             return
         }
     }
@@ -611,20 +611,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     // MARK: - Private Functions
-    
-    //Popup with error
-    private func errorPopup(message:String) {
-        
-        // to hide any errors in UI uncomment this
-        // return
-        let process = Process()
-        let string = message.replacingOccurrences(of: "\"", with: "\\\"")
-        let args = ["-e", "display alert \"Sarah Lawrence College Manager\" message \"\(string)\" "]; //buttons {\"OK\"} default button \"OK\""]
-        process.launchPath = "/usr/bin/osascript"
-        process.arguments = args
-        process.launch()
-        process.waitUntilExit()
-    }
 }
 
 extension AppDelegate: DirectoryMonitorDelegate {

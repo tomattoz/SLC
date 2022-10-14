@@ -10,7 +10,10 @@
         <array>
             <string>$cleanupToolLocation</string>
         </array>
-        <key>StartInterval</key>
-        <integer>$interval</integer>
+        <key>StartCalendarInterval</key>
+        <dict>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
     </dict>
 </plist>

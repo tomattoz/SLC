@@ -28,6 +28,14 @@
 		7CDF32612644627500478813 /* BackupPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF325F2644627500478813 /* BackupPanelController.swift */; };
 		7CDF32622644627500478813 /* BackupPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDF32602644627500478813 /* BackupPanel.xib */; };
 		950EB4FF2696952700B6CE46 /* edu.slc.logoutcleaner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */; };
+		B72D52BE28F9D732006AE631 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72D52BD28F9D731006AE631 /* Config.plist */; };
+		B72D52C628F9E4D0006AE631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72D52C528F9E4D0006AE631 /* AppDelegate.swift */; };
+		B72D52C828F9E4D9006AE631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72D52C728F9E4D9006AE631 /* Assets.xcassets */; };
+		B72D52CB28F9E4D9006AE631 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72D52C928F9E4D9006AE631 /* MainMenu.xib */; };
+		B72D52DA28F9F09C006AE631 /* PreloginAgent.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72D52D928F9F09C006AE631 /* PreloginAgent.plist */; };
+		B72D52EC28F9FF5A006AE631 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72D52EB28F9FF5A006AE631 /* Cocoa.framework */; };
+		B72D52ED28FA00D8006AE631 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72D52EB28F9FF5A006AE631 /* Cocoa.framework */; };
+		B72D52F528FA03F3006AE631 /* SLCPreloginAgent.app in Copy PreloginAgent */ = {isa = PBXBuildFile; fileRef = B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA928F8ABA400166311 /* cleanupScript.sh */; };
 		B75DBCAC28F8AEFF00166311 /* Installer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75DBCAB28F8AEFF00166311 /* Installer.swift */; };
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
@@ -38,6 +46,30 @@
 		B78E834428F97365009C05DF /* FileWatcherDaemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */; };
 		B78E834528F97368009C05DF /* CleanupDaemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B72D52F628FA0476006AE631 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CCAB036262442BF00917D07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B72D52C228F9E4D0006AE631;
+			remoteInfo = SLCPreloginAgent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B72D52F428FA03C9006AE631 /* Copy PreloginAgent */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				B72D52F528FA03F3006AE631 /* SLCPreloginAgent.app in Copy PreloginAgent */,
+			);
+			name = "Copy PreloginAgent";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		619B784E2787567F00CB38F4 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
@@ -65,6 +97,15 @@
 		7CDF325F2644627500478813 /* BackupPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPanelController.swift; sourceTree = "<group>"; };
 		7CDF32602644627500478813 /* BackupPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPanel.xib; sourceTree = "<group>"; };
 		950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = edu.slc.logoutcleaner.plist; sourceTree = "<group>"; };
+		B72D52BD28F9D731006AE631 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLCPreloginAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B72D52C528F9E4D0006AE631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B72D52C728F9E4D9006AE631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B72D52CA28F9E4D9006AE631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B72D52CC28F9E4D9006AE631 /* SLCPreloginAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLCPreloginAgent.entitlements; sourceTree = "<group>"; };
+		B72D52D928F9F09C006AE631 /* PreloginAgent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PreloginAgent.plist; sourceTree = "<group>"; };
+		B72D52DB28F9F0E3006AE631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B72D52EB28F9FF5A006AE631 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FileWatcherDaemon.plist; sourceTree = "<group>"; };
 		B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CleanupDaemon.plist; sourceTree = "<group>"; };
 		B75DBCA928F8ABA400166311 /* cleanupScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cleanupScript.sh; sourceTree = "<group>"; };
@@ -80,7 +121,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72D52ED28FA00D8006AE631 /* Cocoa.framework in Frameworks */,
 				B78E834328F96D67009C05DF /* LaunchAtLogin in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B72D52C028F9E4D0006AE631 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B72D52EC28F9FF5A006AE631 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,11 +140,12 @@
 		7CCAB035262442BF00917D07 = {
 			isa = PBXGroup;
 			children = (
+				B78E834128F96D67009C05DF /* Frameworks */,
 				B75DBCAD28F8B3DA00166311 /* Plists */,
+				7CCAB03F262442BF00917D07 /* Products */,
 				B75DBCA428F89B7900166311 /* Scripts */,
 				7CCAB040262442BF00917D07 /* SessionManager */,
-				7CCAB03F262442BF00917D07 /* Products */,
-				B78E834128F96D67009C05DF /* Frameworks */,
+				B72D52C428F9E4D0006AE631 /* SLCPreloginAgent */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCAB03E262442BF00917D07 /* SLC.app */,
+				B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,10 +178,10 @@
 		7CCAB0522624448000917D07 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7CDF325F2644627500478813 /* BackupPanelController.swift */,
+				7CDF32602644627500478813 /* BackupPanel.xib */,
 				619B784E2787567F00CB38F4 /* AboutPanel.xib */,
 				7C6DBE932631D3A10019D97C /* AboutPanelController.swift */,
-				7CDF32602644627500478813 /* BackupPanel.xib */,
-				7CDF325F2644627500478813 /* BackupPanelController.swift */,
 				7CCAB0A0262483F500917D07 /* Curtain.xib */,
 				B7858E162784D4F4008992E9 /* CurtainContentController.swift */,
 				B7858E172784D4F4008992E9 /* CurtainContentController.xib */,
@@ -147,9 +199,22 @@
 			path = SessionManager/Views;
 			sourceTree = SOURCE_ROOT;
 		};
+		B72D52C428F9E4D0006AE631 /* SLCPreloginAgent */ = {
+			isa = PBXGroup;
+			children = (
+				B72D52DB28F9F0E3006AE631 /* Info.plist */,
+				B72D52C528F9E4D0006AE631 /* AppDelegate.swift */,
+				B72D52C728F9E4D9006AE631 /* Assets.xcassets */,
+				B72D52C928F9E4D9006AE631 /* MainMenu.xib */,
+				B72D52CC28F9E4D9006AE631 /* SLCPreloginAgent.entitlements */,
+			);
+			path = SLCPreloginAgent;
+			sourceTree = "<group>";
+		};
 		B75DBCA428F89B7900166311 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				B72D52D928F9F09C006AE631 /* PreloginAgent.plist */,
 				7C61B13F26279B2000D76010 /* backupScript.sh */,
 				B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */,
 				B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */,
@@ -164,6 +229,7 @@
 				7C6DBE8D2631B6E60019D97C /* Admins.plist */,
 				950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */,
 				7C6F47DE262F7B7700F2DEE9 /* Users.plist */,
+				B72D52BD28F9D731006AE631 /* Config.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -171,6 +237,7 @@
 		B78E834128F96D67009C05DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B72D52EB28F9FF5A006AE631 /* Cocoa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,12 +253,13 @@
 				7CCAB03B262442BF00917D07 /* Frameworks */,
 				7CCAB03C262442BF00917D07 /* Resources */,
 				B7858DF62784B013008992E9 /* Integrate LaunchAtLogin */,
+				B72D52F428FA03C9006AE631 /* Copy PreloginAgent */,
 				B75DBCA328F8958D00166311 /* Set Build Number */,
-				7C61B1572627DD0800D76010 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B72D52F728FA0476006AE631 /* PBXTargetDependency */,
 			);
 			name = SLC;
 			packageProductDependencies = (
@@ -201,17 +269,37 @@
 			productReference = 7CCAB03E262442BF00917D07 /* SLC.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B72D52C228F9E4D0006AE631 /* SLCPreloginAgent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B72D52CD28F9E4D9006AE631 /* Build configuration list for PBXNativeTarget "SLCPreloginAgent" */;
+			buildPhases = (
+				B72D52BF28F9E4D0006AE631 /* Sources */,
+				B72D52C028F9E4D0006AE631 /* Frameworks */,
+				B72D52C128F9E4D0006AE631 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SLCPreloginAgent;
+			productName = SLCPreloginAgent;
+			productReference = B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7CCAB036262442BF00917D07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					7CCAB03D262442BF00917D07 = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					B72D52C228F9E4D0006AE631 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -232,6 +320,7 @@
 			projectRoot = "";
 			targets = (
 				7CCAB03D262442BF00917D07 /* SLC */,
+				B72D52C228F9E4D0006AE631 /* SLCPreloginAgent */,
 			);
 		};
 /* End PBXProject section */
@@ -245,6 +334,7 @@
 				B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */,
 				7CCAB044262442C300917D07 /* Assets.xcassets in Resources */,
 				7CDF32622644627500478813 /* BackupPanel.xib in Resources */,
+				B72D52BE28F9D732006AE631 /* Config.plist in Resources */,
 				7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */,
 				7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */,
 				7CCAB047262442C300917D07 /* MainMenu.xib in Resources */,
@@ -260,26 +350,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B72D52C128F9E4D0006AE631 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B72D52C828F9E4D9006AE631 /* Assets.xcassets in Resources */,
+				B72D52CB28F9E4D9006AE631 /* MainMenu.xib in Resources */,
+				B72D52DA28F9F09C006AE631 /* PreloginAgent.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7C61B1572627DD0800D76010 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#exit 0\nFILE_CP=\"$PROJECT_DIR/../../$TARGETNAME-$CURRENT_PROJECT_VERSION.app\"\nARCHIVE=\"$PROJECT_DIR/../../$TARGETNAME-APP-$CURRENT_PROJECT_VERSION.zip\"\necho cp -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\" \"$FILE_CP\"\n[ -f \"$ARCHIVE\" ] && rm -r \"$ARCHIVE\"\n[ -d \"$FILE_CP\" ] && rm -r \"$FILE_CP\"\ncp -R -f \"$TARGET_BUILD_DIR/$TARGETNAME.app\"  \"$FILE_CP\"\nzip -r \"$ARCHIVE\" \"$FILE_CP\"\n\n\n\n\n\n\n";
-		};
 		B75DBCA328F8958D00166311 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,13 +422,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B72D52BF28F9E4D0006AE631 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B72D52C628F9E4D0006AE631 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B72D52F728FA0476006AE631 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B72D52C228F9E4D0006AE631 /* SLCPreloginAgent */;
+			targetProxy = B72D52F628FA0476006AE631 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7CCAB045262442C300917D07 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7CCAB046262442C300917D07 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B72D52C928F9E4D9006AE631 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B72D52CA28F9E4D9006AE631 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -498,6 +605,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -525,11 +633,76 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "psu.slc.gm.SessionManager-macos1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SessionManager/SLC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B72D52CE28F9E4D9006AE631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = SLCPreloginAgent/SLCPreloginAgent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P84XC7H67P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SLCPreloginAgent/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = psu.slc.gm.SLCPreloginAgent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B72D52CF28F9E4D9006AE631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = SLCPreloginAgent/SLCPreloginAgent.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P84XC7H67P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SLCPreloginAgent/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = psu.slc.gm.SLCPreloginAgent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -551,6 +724,15 @@
 			buildConfigurations = (
 				7CCAB04D262442C300917D07 /* Debug */,
 				7CCAB04E262442C300917D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B72D52CD28F9E4D9006AE631 /* Build configuration list for PBXNativeTarget "SLCPreloginAgent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B72D52CE28F9E4D9006AE631 /* Debug */,
+				B72D52CF28F9E4D9006AE631 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

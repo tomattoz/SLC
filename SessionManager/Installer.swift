@@ -12,6 +12,7 @@ enum InstallerError: Error {
     case backupScriptMissing
     case cleanupDaemonMissing
     case cleanupScriptMissing
+    case preloginAgentMissing
     case bundledPlistsMissing
     case permissionsError
     case installerFailed(path: String)
@@ -20,12 +21,13 @@ enum InstallerError: Error {
 struct Installer {
     private static let installerPath = "/tmp/installer.sh"
     let plistsFolder: String
-    let cleanupInterval: Int
 
-    func installPriviledgedTool(reinstall: Bool = false) throws {
+    func installPriviledgedTool(reinstall: Bool = false, overwrite: Bool = false) throws {
         func plist(for name: String) -> String? {
             return Bundle.main.path(forResource: name, ofType: "plist")
         }
+        
+        let overwrite = overwrite ? "overwrite" : ""
                 
         let toolIFolder = "/Library/Management/.tool"
         let usrDirIFolder = "/Library/Management/userDirBkups"
@@ -43,8 +45,15 @@ struct Installer {
         let cleanupToolPlistPath = "/Library/LaunchDaemons/edu.slc.gm.SarahLawrenceCollegeCleanupDaemon.plist"
         let cleanupTempToolPlistPath = "/tmp/edu.slc.gm.SarahLawrenceCollegeCleanupDaemon.plist"
         
+        // Prelogin agent.
+        let preloginAgentName = "SLCPreloginAgent.app"
+        let preloginAgentLocation = "/Library/PrivilegedHelperTools/\(preloginAgentName)"
+        let preloginAgentPListPath = "/Library/LaunchAgents/edu.slc.gm.SLCPreloginAgent.plist"
+        let preloginAgentTempToolPlistPath = "/tmp/edu.slc.gm.SLCPreloginAgent.plist"
+        
         guard let cleanerPlist = plist(for: "edu.slc.logoutcleaner"),
               let adminsPlist = plist(for: "Admins"),
+              let configPlist = plist(for: "Config"),
               let usersPlist = plist(for: "Users") else {
                   throw InstallerError.bundledPlistsMissing
               }
@@ -64,16 +73,24 @@ struct Installer {
             throw InstallerError.cleanupScriptMissing
         }
         
+        guard let preloginAgentPath = Bundle.main.path(forResource: "SLCPreloginAgent", ofType: "app") else {
+            throw InstallerError.preloginAgentMissing
+        }
+        
         let installerScript = """
 #!/bin/bash
 
-launchctl unload \(backupToolPlistPath)
-launchctl unload edu.psu.PennSessionManagerService.plist
-rm  /Library/LaunchDaemons/edu.psu.PennSessionManagerService.plist
-
 launchctl unload \(cleanupToolPlistPath)
 launchctl unload edu.psu.SarahLawrenceCollegeCleanupDaemon.plist
-rm  /Library/LaunchDaemons/edu.psu.SarahLawrenceCollegeCleanupDaemon.plist
+rm /Library/LaunchDaemons/edu.psu.SarahLawrenceCollegeCleanupDaemon.plist
+
+launchctl unload \(backupToolPlistPath)
+launchctl unload edu.slc.gm.SarahLawrenceCollegeService.plist
+rm /Library/LaunchDaemons/edu.slc.gm.SarahLawrenceCollegeService.plist
+
+launchctl unload \(preloginAgentPListPath)
+launchctl unload edu.slc.gm.SLCPreloginAgent.plist
+rm /Library/LaunchAgents/edu.slc.gm.SLCPreloginAgent.plist
 
 [ -d \(usrTemplateIFolder) ] || install -d \(usrTemplateIFolder)
 chmod a=rwx \(usrTemplateIFolder)
@@ -92,19 +109,30 @@ cp -f "\(cleanupToolPath)" \(cleanupToolLocation)
 chown -R root:wheel \(cleanupToolLocation)
 chmod ug=rwx,o= \(cleanupToolLocation)
 
-cp -f "\(cleanerPlist)" \(plistsFolder)
-cp -f "\(adminsPlist)" \(plistsFolder)
-cp -f "\(usersPlist)" \(plistsFolder)
+cp -f "\(preloginAgentPath)" \(preloginAgentLocation)
+chown -R root:wheel \(preloginAgentLocation)
+chmod ug=rwx,o= \(preloginAgentLocation)
+
+if [ "\(overwrite)" -eq "overwrite" ]
+then
+    cp -f "\(cleanerPlist)" \(plistsFolder)
+    cp -f "\(adminsPlist)" \(plistsFolder)
+    cp -f "\(usersPlist)" \(plistsFolder)
+    cp -f "\(configPlist)" \(plistsFolder)
+fi
 
 mv -f "\(backupTempToolPlistPath)" \(backupToolPlistPath)
 chown -R root:wheel \(backupToolPlistPath)
-
 launchctl load \(backupToolPlistPath)
 
 mv -f "\(cleanupTempToolPlistPath)" \(cleanupToolPlistPath)
 chown -R root:wheel \(cleanupToolPlistPath)
-
 launchctl load \(cleanupToolPlistPath)
+
+mv -f "\(preloginAgentTempToolPlistPath)" \(preloginAgentPListPath)
+chown -R root:wheel \(preloginAgentPListPath)
+launchctl load \(preloginAgentPListPath)
+
 
 rm /tmp/installer.sh
 """
@@ -117,6 +145,9 @@ rm /tmp/installer.sh
         
         // Read the cleanup daemon plist and copy to a temp path for later install.
         try copyCleanupDaemon(cleanupToolLocation, cleanupTempToolPlistPath)
+        
+        // Read the prelogin agent plist and copy to a temp path for later install.
+        try copyPreloginAgent(preloginAgentPListPath)
         
         var attributes = [FileAttributeKey : Any]()
         attributes[.posixPermissions] = 0o777
@@ -172,7 +203,16 @@ rm /tmp/installer.sh
         
         let cleanupDaemon = try String(contentsOf: cleanupDaemonURL)
             .replacingOccurrences(of: "$cleanupToolLocation", with: "\(cleanupToolLocation)")
-            .replacingOccurrences(of: "$interval", with: cleanupInterval.description)
         try cleanupDaemon.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
+    }
+    
+    fileprivate func copyPreloginAgent(_ tempToolPlistPath: String) throws {
+        guard let preloginAgentURL = Bundle.main.url(forResource: "PreloginAgent",
+                                                     withExtension: "plist") else {
+            throw InstallerError.preloginAgentMissing
+        }
+        
+        let preloginAgent = try String(contentsOf: preloginAgentURL)
+        try preloginAgent.write(toFile: tempToolPlistPath, atomically: true, encoding: .utf8)
     }
 }

@@ -12,6 +12,20 @@ class ExtendMenuItem: NSMenuItem {
     var secVal:Int = 120
 }
 
+// Accepted command line arguments:
+//
+// -install : reinstall scripts, daemons and configuration files.
+// -overwrite : overwrite configuration files when installing.
+//
+// The app can be run with sudo from the command line (remotely) to do the
+// first install by running: sudo /Applications/SLC.app/Contents/MacOS/SLC -install
+//
+// Other command lines useful for debugging:
+//
+// -disableScriptInstall : won't install script when running.
+// -testing : show an orange testing window.
+// -fakeLogout : do not really logout.
+
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
@@ -25,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #endif
     
     let install: Bool = CommandLine.arguments.contains("-install")
+    let overwrite: Bool = CommandLine.arguments.contains("-overwrite")
 
     // Time out interval in sec
     var welcomeTimeout: TimeInterval = 120
@@ -52,8 +67,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #else
     let fakeLogout: Bool = false
     #endif
-    
-    let cleanupInterval: Int = 43200 // 12 hours
 
     let showCurtain = true
 
@@ -451,9 +464,8 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         // Run installer automatically or when manually specified.
         if !disableScriptInstall || (install && !disableScriptInstall ) {
             do {
-                let installer = Installer(plistsFolder: plistsFolder,
-                                          cleanupInterval: cleanupInterval)
-                try installer.installPriviledgedTool(reinstall: install)
+                let installer = Installer(plistsFolder: plistsFolder)
+                try installer.installPriviledgedTool(reinstall: install, overwrite: overwrite)
                 
                 // If manual installation was specified (through -install argument)
                 // we terminate the app execution after successful install.

@@ -126,18 +126,26 @@ rm /tmp/installer.sh
             throw InstallerError.permissionsError
         }
         
-        // Run installer with admin privileges.
+        // Check if we are running as sudo, so we don't need to run the installer
+        // with osascript.
         let process = Process()
-        process.launchPath = "/usr/bin/osascript"
-        process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
+
+        if getuid() == 0 {
+            // We are root, so we run the install normally.
+            process.launchPath  = "/tmp/installer.sh"
+        } else {
+            // Run installer with admin privileges.
+            process.launchPath = "/usr/bin/osascript"
+            process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
+        }
+
         process.launch()
         process.waitUntilExit()
-        
+
         let status = process.terminationStatus
         if status != 0 {
             throw InstallerError.installerFailed(path: Self.installerPath)
         }
-        
     }
     // MARK: - Private Functions
     

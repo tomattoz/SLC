@@ -462,8 +462,14 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
                     NSApp.terminate(self)
                 }
             } catch {
-                NSAlert(error: error).runModal()
-                return
+                if install {
+                    print(error)
+                    self.isAdmin = true
+                    NSApp.terminate(self)
+                } else {
+                    NSAlert(error: error).runModal()
+                    return
+                }
             }
         }
         

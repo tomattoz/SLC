@@ -32,6 +32,7 @@ struct Installer {
         let toolIFolder = "/Library/Management/.tool"
         let usrDirIFolder = "/Library/Management/userDirBkups"
         let usrTemplateIFolder = "/Library/Management/userTemplate"
+        let privilegedHelperToolsFolder = "/Library/PrivilegedHelperTools"
         
         // Backup script and daemon.
         let backupToolName = "backupScript-1.1.2.sh"
@@ -47,7 +48,7 @@ struct Installer {
         
         // Prelogin agent.
         let preloginAgentName = "SLCPreloginAgent.app"
-        let preloginAgentLocation = "/Library/PrivilegedHelperTools/\(preloginAgentName)"
+        let preloginAgentLocation = "\(privilegedHelperToolsFolder)/\(preloginAgentName)"
         let preloginAgentPListPath = "/Library/LaunchAgents/edu.slc.gm.SLCPreloginAgent.plist"
         let preloginAgentTempToolPlistPath = "/tmp/edu.slc.gm.SLCPreloginAgent.plist"
         
@@ -73,7 +74,10 @@ struct Installer {
             throw InstallerError.cleanupScriptMissing
         }
         
-        guard let preloginAgentPath = Bundle.main.path(forResource: "SLCPreloginAgent", ofType: "app") else {
+        let preloginAgentPath = Bundle.main.bundleURL
+                .appendingPathComponent("Contents/Library/LaunchServices/SLCPreloginAgent.app")
+                .path
+        if !fm.fileExists(atPath: preloginAgentPath) {
             throw InstallerError.preloginAgentMissing
         }
         
@@ -100,6 +104,9 @@ chmod a=rwx \(usrDirIFolder)
 chmod a=rwx \(toolIFolder)
 [ -d \(plistsFolder) ] || install -d \(plistsFolder)
 chmod a=rwx \(plistsFolder)
+[ -d \(privilegedHelperToolsFolder) ] || install -d \(privilegedHelperToolsFolder)
+chown -R root:wheel \(privilegedHelperToolsFolder)
+chmod 755 \(privilegedHelperToolsFolder)
 
 cp -f "\(backupToolPath)" \(backupToolLocation)
 chown -R root:wheel \(backupToolLocation)
@@ -109,7 +116,7 @@ cp -f "\(cleanupToolPath)" \(cleanupToolLocation)
 chown -R root:wheel \(cleanupToolLocation)
 chmod ug=rwx,o= \(cleanupToolLocation)
 
-cp -f "\(preloginAgentPath)" \(preloginAgentLocation)
+cp -r -f "\(preloginAgentPath)" \(preloginAgentLocation)
 chown -R root:wheel \(preloginAgentLocation)
 chmod ug=rwx,o= \(preloginAgentLocation)
 

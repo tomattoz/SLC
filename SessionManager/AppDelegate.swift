@@ -453,11 +453,12 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             do {
                 let installer = Installer(plistsFolder: plistsFolder,
                                           cleanupInterval: cleanupInterval)
-                try installer.installPriviledgedTool()
+                try installer.installPriviledgedTool(reinstall: install)
                 
                 // If manual installation was specified (through -install argument)
                 // we terminate the app execution after successful install.
                 if install {
+                    self.isAdmin = true
                     NSApp.terminate(self)
                 }
             } catch {

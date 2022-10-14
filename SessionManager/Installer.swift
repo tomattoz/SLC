@@ -22,7 +22,7 @@ struct Installer {
     let plistsFolder: String
     let cleanupInterval: Int
 
-    func installPriviledgedTool() throws {
+    func installPriviledgedTool(reinstall: Bool = false) throws {
         func plist(for name: String) -> String? {
             return Bundle.main.path(forResource: name, ofType: "plist")
         }
@@ -51,7 +51,7 @@ struct Installer {
         
         let fm = FileManager.default
         
-        if fm.fileExists(atPath: backupToolLocation) && fm.fileExists(atPath: backupToolPlistPath) {
+        if !reinstall && fm.fileExists(atPath: backupToolLocation) && fm.fileExists(atPath: backupToolPlistPath) {
             print("Sarah Lawrence College Manager installed properly")
             return
         }

@@ -132,9 +132,11 @@ rm /tmp/installer.sh
 
         if getuid() == 0 {
             // We are root, so we run the install normally.
+            print("Running installer as root")
             process.launchPath  = "/tmp/installer.sh"
         } else {
             // Run installer with admin privileges.
+            print("Running installer with elevated privileges")
             process.launchPath = "/usr/bin/osascript"
             process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
         }

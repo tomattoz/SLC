@@ -32,10 +32,10 @@
 		B72D52C628F9E4D0006AE631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72D52C528F9E4D0006AE631 /* AppDelegate.swift */; };
 		B72D52C828F9E4D9006AE631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72D52C728F9E4D9006AE631 /* Assets.xcassets */; };
 		B72D52CB28F9E4D9006AE631 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B72D52C928F9E4D9006AE631 /* MainMenu.xib */; };
-		B72D52DA28F9F09C006AE631 /* PreloginAgent.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72D52D928F9F09C006AE631 /* PreloginAgent.plist */; };
 		B72D52EC28F9FF5A006AE631 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72D52EB28F9FF5A006AE631 /* Cocoa.framework */; };
 		B72D52ED28FA00D8006AE631 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72D52EB28F9FF5A006AE631 /* Cocoa.framework */; };
 		B72D52F528FA03F3006AE631 /* SLCPreloginAgent.app in Copy PreloginAgent */ = {isa = PBXBuildFile; fileRef = B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B72D52F828FA1BA1006AE631 /* PreloginAgent.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72D52D928F9F09C006AE631 /* PreloginAgent.plist */; };
 		B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA928F8ABA400166311 /* cleanupScript.sh */; };
 		B75DBCAC28F8AEFF00166311 /* Installer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75DBCAB28F8AEFF00166311 /* Installer.swift */; };
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
@@ -61,8 +61,8 @@
 		B72D52F428FA03C9006AE631 /* Copy PreloginAgent */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LaunchServices;
-			dstSubfolderSpec = 1;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
 				B72D52F528FA03F3006AE631 /* SLCPreloginAgent.app in Copy PreloginAgent */,
 			);
@@ -338,6 +338,7 @@
 				7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */,
 				7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */,
 				7CCAB047262442C300917D07 /* MainMenu.xib in Resources */,
+				B72D52F828FA1BA1006AE631 /* PreloginAgent.plist in Resources */,
 				B7858E192784D4F4008992E9 /* CurtainContentController.xib in Resources */,
 				7C61B14026279B2000D76010 /* backupScript.sh in Resources */,
 				B78E834528F97368009C05DF /* CleanupDaemon.plist in Resources */,
@@ -356,7 +357,6 @@
 			files = (
 				B72D52C828F9E4D9006AE631 /* Assets.xcassets in Resources */,
 				B72D52CB28F9E4D9006AE631 /* MainMenu.xib in Resources */,
-				B72D52DA28F9F09C006AE631 /* PreloginAgent.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

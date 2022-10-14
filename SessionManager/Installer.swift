@@ -74,10 +74,7 @@ struct Installer {
             throw InstallerError.cleanupScriptMissing
         }
         
-        let preloginAgentPath = Bundle.main.bundleURL
-                .appendingPathComponent("Contents/Library/LaunchServices/SLCPreloginAgent.app")
-                .path
-        if !fm.fileExists(atPath: preloginAgentPath) {
+        guard let preloginAgentPath = Bundle.main.path(forResource: "SLCPreloginAgent", ofType: "app") else {
             throw InstallerError.preloginAgentMissing
         }
         
@@ -120,7 +117,7 @@ cp -r -f "\(preloginAgentPath)" \(preloginAgentLocation)
 chown -R root:wheel \(preloginAgentLocation)
 chmod ug=rwx,o= \(preloginAgentLocation)
 
-if [ "\(overwrite)" -eq "overwrite" ]
+if [ "\(overwrite)" = "overwrite" ]
 then
     cp -f "\(cleanerPlist)" \(plistsFolder)
     cp -f "\(adminsPlist)" \(plistsFolder)
@@ -154,7 +151,7 @@ rm /tmp/installer.sh
         try copyCleanupDaemon(cleanupToolLocation, cleanupTempToolPlistPath)
         
         // Read the prelogin agent plist and copy to a temp path for later install.
-        try copyPreloginAgent(preloginAgentPListPath)
+        try copyPreloginAgent(preloginAgentTempToolPlistPath)
         
         var attributes = [FileAttributeKey : Any]()
         attributes[.posixPermissions] = 0o777

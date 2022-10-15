@@ -682,35 +682,34 @@
             <point key="canvasLocation" x="200" y="121"/>
         </menu>
         <window title="SLCPreloginAgent" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="QvC-M9-y7g">
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="690" height="492"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <value key="minSize" type="size" width="690" height="492"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="690" height="493"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-Lt-4ud">
-                        <rect key="frame" x="6" y="91" width="468" height="179"/>
+                        <rect key="frame" x="45" y="168" width="600" height="157"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-gW-NFv">
-                                <rect key="frame" x="146" y="147" width="176" height="32"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="System maintanance" id="V5E-Ay-xNM">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="749" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-gW-NFv">
+                                <rect key="frame" x="-2" y="136" width="604" height="21"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="System maintenance" id="V5E-Ay-xNM">
                                     <font key="font" metaFont="system" size="18"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL9-qq-S1U">
-                                <rect key="frame" x="108" y="48" width="253" height="89"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL9-qq-S1U">
+                                <rect key="frame" x="-2" y="37" width="604" height="89"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="help desk" id="wW5-Ah-F7O">
                                     <font key="font" size="64" name="ITFDevanagariMarathi-Book"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="nem-fn-n4H">
-                                <rect key="frame" x="18" y="0.0" width="432" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nem-fn-n4H">
+                                <rect key="frame" x="-2" y="0.0" width="604" height="27"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="SARAH • LAWRENCE • COLLEGE" id="eJV-a4-yyG">
                                     <font key="font" size="19" name="ITFDevanagariMarathi-Book"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -718,6 +717,15 @@
                                 </textFieldCell>
                             </textField>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nem-fn-n4H" secondAttribute="trailing" id="2rx-8T-7yY"/>
+                            <constraint firstItem="iL9-qq-S1U" firstAttribute="leading" secondItem="ekE-Lt-4ud" secondAttribute="leading" id="9sD-QJ-b0D"/>
+                            <constraint firstItem="EuZ-gW-NFv" firstAttribute="leading" secondItem="ekE-Lt-4ud" secondAttribute="leading" id="M01-Zc-rYg"/>
+                            <constraint firstAttribute="trailing" secondItem="iL9-qq-S1U" secondAttribute="trailing" id="QPc-yo-VWj"/>
+                            <constraint firstAttribute="trailing" secondItem="EuZ-gW-NFv" secondAttribute="trailing" id="T3t-Th-X8A"/>
+                            <constraint firstItem="nem-fn-n4H" firstAttribute="leading" secondItem="ekE-Lt-4ud" secondAttribute="leading" id="de9-ll-Yeh"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="tvG-mt-Idj"/>
+                        </constraints>
                         <visibilityPriorities>
                             <integer value="1000"/>
                             <integer value="1000"/>
@@ -731,11 +739,13 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="DfJ-wF-yTA"/>
-                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="x4L-Uj-aus"/>
+                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="168" id="Ggo-T2-qnT"/>
+                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="SqJ-h1-B0m"/>
+                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="cY4-Oo-Xvu"/>
+                    <constraint firstAttribute="bottom" secondItem="ekE-Lt-4ud" secondAttribute="bottom" constant="168" id="zpG-Uv-4BZ"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="200" y="400"/>
+            <point key="canvasLocation" x="245" y="446"/>
         </window>
     </objects>
 </document>

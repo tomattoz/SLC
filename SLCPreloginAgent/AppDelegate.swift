@@ -12,30 +12,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet private var window: NSWindow!
     
-    private var timer: Timer!
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         window.canBecomeVisibleWithoutLogin = true
         window.hidesOnDeactivate = false
         window.orderFrontRegardless()
+        window.center()
+        NSApp.activate(ignoringOtherApps: true)
         
         // Read preferences.
-        var timeout: TimeInterval = 10 // 10 seconds
+        var timeout: UInt64 = 10 // 10 seconds
         let url = URL(fileURLWithPath: "/Library/Management/plists/Config.plist")
         if let dict = try? NSDictionary(contentsOf: url, error: ()) {
-            timeout = (dict["PreLoginAgentDelay"] as? NSNumber)?.doubleValue ?? timeout
+            timeout = (dict["PreLoginAgentDelay"] as? NSNumber)?.uint64Value ?? timeout
         }
         
         // Set timer to kill the app after a timeout.
-        timer = Timer(fire: Date().addingTimeInterval(timeout),
-                      interval: 0,
-                      repeats: false,
-                      block: { timer in
-            NSApp.terminate(self)
-        })
-        RunLoop.main.add(timer, forMode: .default)
+        let dispatchTime = DispatchTime(uptimeNanoseconds: DispatchTime.now().uptimeNanoseconds + timeout * UInt64(NSEC_PER_SEC))
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.window.orderOut(self)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

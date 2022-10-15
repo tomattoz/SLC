@@ -34,7 +34,7 @@
                 </progressIndicator>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-iB-n7b">
                     <rect key="frame" x="30" y="229" width="421" height="21"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="System maintanance" id="BD0-Hy-fVW">
+                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="System maintenance" id="BD0-Hy-fVW">
                         <font key="font" metaFont="system" size="18"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

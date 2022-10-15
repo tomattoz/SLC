@@ -133,6 +133,7 @@ mv -f "\(cleanupTempToolPlistPath)" \(cleanupToolPlistPath)
 chown -R root:wheel \(cleanupToolPlistPath)
 launchctl load \(cleanupToolPlistPath)
 
+rm -rf \(preloginAgentLocation)
 mv -f "\(preloginAgentTempToolPlistPath)" \(preloginAgentPListPath)
 chown -R root:wheel \(preloginAgentPListPath)
 launchctl load \(preloginAgentPListPath)

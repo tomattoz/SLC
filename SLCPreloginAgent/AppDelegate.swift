@@ -10,17 +10,33 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet private var window: PreloginWindow!
+    @IBOutlet private var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         window.canBecomeVisibleWithoutLogin = true
         window.hidesOnDeactivate = false
+        window.delegate = self
         window.orderFrontRegardless()
         window.center()
         NSApp.activate(ignoringOtherApps: true)
-        
+        window.contentView?.traverse(executing: { view in
+            (view as? NSProgressIndicator)?.startAnimation(self)
+        })
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
+        // Insert code here to tear down your application
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        return true
+    }
+}
+
+extension AppDelegate: NSWindowDelegate {
+    func windowDidBecomeKey(_ notification: Notification) {
         // Read preferences.
         var timeout: UInt64 = 10 // 10 seconds
         let url = URL(fileURLWithPath: "/Library/Management/plists/Config.plist")
@@ -34,13 +50,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.window.orderOut(self)
         }
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
-    }
 }
-

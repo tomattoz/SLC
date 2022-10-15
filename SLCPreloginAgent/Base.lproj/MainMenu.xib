@@ -681,7 +681,7 @@
             </items>
             <point key="canvasLocation" x="200" y="121"/>
         </menu>
-        <window title="SLCPreloginAgent" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g" customClass="PreloginWindow" customModule="SLCPreloginAgent" customModuleProvider="target">
+        <window title="SLCPreloginAgent" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="335" y="390" width="690" height="492"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
@@ -754,9 +754,6 @@
                     <constraint firstAttribute="bottom" secondItem="ekE-Lt-4ud" secondAttribute="bottom" constant="168" id="zpG-Uv-4BZ"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="progress" destination="gJo-BO-Uem" id="pqD-wb-Td2"/>
-            </connections>
             <point key="canvasLocation" x="245" y="446"/>
         </window>
     </objects>

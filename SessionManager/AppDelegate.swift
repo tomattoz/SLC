@@ -31,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
 
     var isAdmin = false
+    var isSystemLogout = true
     
     #if DEBUG
     let disableScriptInstall: Bool = CommandLine.arguments.contains("-disableScriptInstall")
@@ -134,6 +135,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
 //            })
 //        }
     }
+    
     func cancelLogin(_ warning:Bool) {
         
         if warning {
@@ -146,6 +148,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         }
 
     }
+    
     @IBAction func presentExtendPopUpMenu(_ sender: NSButton?) {
         
         let menu = NSMenu.init()
@@ -293,7 +296,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         
         return .terminateLater
     }
-    var isSystemLogout = true
+
     func doLogout() {
         dismissCurtainWindow()
         welcomeController = nil
@@ -319,11 +322,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             self.isAdmin = true
             NSApp.terminate(self)
         }
-
-        //stopAllprocesses()
-        
-        //self.doHardLogout()
-
     }
     
     func setupLoginPanel() {
@@ -335,6 +333,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         loginController?.setup()
 
     }
+    
     func openLoginPanel() {
         
         if loginController == nil {
@@ -565,10 +564,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             welcomeController = WelcomePanelController(nibName: "WelcomePanel", bundle: Bundle.main)
             showCurtainWindow(contentController: welcomeController!)
         }
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-
     }
     
     func showCurtainWindow(contentController: NSViewController) {

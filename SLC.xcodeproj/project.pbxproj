@@ -36,6 +36,7 @@
 		B72D52ED28FA00D8006AE631 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72D52EB28F9FF5A006AE631 /* Cocoa.framework */; };
 		B72D52F528FA03F3006AE631 /* SLCPreloginAgent.app in Copy PreloginAgent */ = {isa = PBXBuildFile; fileRef = B72D52C328F9E4D0006AE631 /* SLCPreloginAgent.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B72D52F828FA1BA1006AE631 /* PreloginAgent.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72D52D928F9F09C006AE631 /* PreloginAgent.plist */; };
+		B74790B528FB619900B70322 /* PreloginWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74790B428FB619900B70322 /* PreloginWindow.swift */; };
 		B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = B75DBCA928F8ABA400166311 /* cleanupScript.sh */; };
 		B75DBCAC28F8AEFF00166311 /* Installer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75DBCAB28F8AEFF00166311 /* Installer.swift */; };
 		B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7858E162784D4F4008992E9 /* CurtainContentController.swift */; };
@@ -106,6 +107,7 @@
 		B72D52D928F9F09C006AE631 /* PreloginAgent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PreloginAgent.plist; sourceTree = "<group>"; };
 		B72D52DB28F9F0E3006AE631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B72D52EB28F9FF5A006AE631 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B74790B428FB619900B70322 /* PreloginWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreloginWindow.swift; sourceTree = "<group>"; };
 		B75DBCA528F89BDF00166311 /* FileWatcherDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FileWatcherDaemon.plist; sourceTree = "<group>"; };
 		B75DBCA728F8A8D400166311 /* CleanupDaemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CleanupDaemon.plist; sourceTree = "<group>"; };
 		B75DBCA928F8ABA400166311 /* cleanupScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cleanupScript.sh; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		B72D52C428F9E4D0006AE631 /* SLCPreloginAgent */ = {
 			isa = PBXGroup;
 			children = (
+				B74790B428FB619900B70322 /* PreloginWindow.swift */,
 				B72D52DB28F9F0E3006AE631 /* Info.plist */,
 				B72D52C528F9E4D0006AE631 /* AppDelegate.swift */,
 				B72D52C728F9E4D9006AE631 /* Assets.xcassets */,
@@ -427,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B72D52C628F9E4D0006AE631 /* AppDelegate.swift in Sources */,
+				B74790B528FB619900B70322 /* PreloginWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

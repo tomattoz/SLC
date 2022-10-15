@@ -10,7 +10,7 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet private var window: PreloginWindow!
+    @IBOutlet private var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -20,6 +20,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.orderFrontRegardless()
         window.center()
         NSApp.activate(ignoringOtherApps: true)
+        window.contentView?.traverse(executing: { view in
+            (view as? NSProgressIndicator)?.startAnimation(self)
+        })
         
         // Read preferences.
         var timeout: UInt64 = 10 // 10 seconds

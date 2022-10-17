@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.hidesOnDeactivate = false
         window.delegate = self
         window.orderFrontRegardless()
-        window.center()
         NSApp.activate(ignoringOtherApps: true)
         window.contentView?.traverse(executing: { view in
             (view as? NSProgressIndicator)?.startAnimation(self)

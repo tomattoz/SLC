@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import LaunchAtLogin
+//import LaunchAtLogin
 
 class ExtendMenuItem: NSMenuItem {
     var secVal:Int = 120
@@ -100,8 +100,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         let pid = getpid()
         print("getpid(): \(pid))\n\n\n")
         print("Processes.listAllPids: \(String(describing: Processes.listAllPids()))\n\n\n")
-
-        
     }
     
     func doBackup() {
@@ -126,18 +124,9 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         if self.welcomeController == nil {
             return
         }
-//        DispatchQueue.main.async {
-//            self.welcomeController?.window?.center()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-//                var frameOrigin = self.welcomeController?.window?.frame.origin
-//                frameOrigin?.y -= 260.0
-//                self.welcomeController?.window?.setFrameOrigin(frameOrigin!)
-//            })
-//        }
     }
     
     func cancelLogin(_ warning:Bool) {
-        
         if warning {
             moveWelcomeWindowDown()
         }
@@ -146,11 +135,9 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             loginController?.window?.close()
             loginController = nil
         }
-
     }
     
     @IBAction func presentExtendPopUpMenu(_ sender: NSButton?) {
-        
         let menu = NSMenu.init()
 
         let fontArttribute = sender?.attributedTitle.fontAttributes(in: NSRange.init(location: 0, length: 1))
@@ -170,14 +157,12 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     @IBAction func selectExtendTime(_ sender: ExtendMenuItem!) {
-
         idleTimer.idleTimeout = TimeInterval(sender.secVal)
         
         acceptTermsLogin()
     }
     
     @IBAction func presentmultiplierPopUpMenu(_ sender: NSButton?) {
-        
         let menu = NSMenu.init()
 
         let fontArttribute = sender?.attributedTitle.fontAttributes(in: NSRange.init(location: 0, length: 1))
@@ -196,7 +181,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
 
     @IBAction func setMultiplierTime(_ sender: MultiplierMenuItem!) {
-
         let extendTimeout = idleTimer.idleTimeout
         
         idleTimer.stop()
@@ -261,7 +245,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         if isAdmin {
             return .terminateNow
         }
-        
+                
         if isSystemLogout {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) { [self] in
                 let pids = Processes.listAllPids()
@@ -551,7 +535,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             testingController!.multiplierButton.action = #selector(AppDelegate.presentmultiplierPopUpMenu(_:))
 
         }
-        
+
         resetWelcomeTimeout()
 
 //        NSApp.presentationOptions = [.disableAppleMenu,

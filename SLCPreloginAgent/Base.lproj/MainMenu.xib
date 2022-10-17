@@ -683,18 +683,18 @@
         </menu>
         <window title="SLCPreloginAgent" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
-            <rect key="contentRect" x="335" y="390" width="690" height="492"/>
+            <rect key="contentRect" x="335" y="390" width="430" height="320"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
-            <value key="minSize" type="size" width="690" height="492"/>
+            <value key="minSize" type="size" width="430" height="320"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="690" height="521"/>
+                <rect key="frame" x="0.0" y="0.0" width="470" height="320"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ekE-Lt-4ud">
-                        <rect key="frame" x="45" y="168" width="600" height="185"/>
+                        <rect key="frame" x="20" y="60" width="430" height="200"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="749" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-gW-NFv">
-                                <rect key="frame" x="-2" y="164" width="604" height="21"/>
+                                <rect key="frame" x="-2" y="179" width="434" height="21"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="System maintenance" id="V5E-Ay-xNM">
                                     <font key="font" metaFont="system" size="18"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -702,7 +702,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iL9-qq-S1U">
-                                <rect key="frame" x="-2" y="65" width="604" height="89"/>
+                                <rect key="frame" x="-2" y="80" width="434" height="89"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="help desk" id="wW5-Ah-F7O">
                                     <font key="font" size="64" name="ITFDevanagariMarathi-Book"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -710,13 +710,10 @@
                                 </textFieldCell>
                             </textField>
                             <progressIndicator maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="gJo-BO-Uem">
-                                <rect key="frame" x="92" y="36" width="417" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="417" id="AuJ-yS-w07"/>
-                                </constraints>
+                                <rect key="frame" x="7" y="36" width="417" height="35"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nem-fn-n4H">
-                                <rect key="frame" x="-2" y="0.0" width="604" height="27"/>
+                                <rect key="frame" x="-2" y="0.0" width="434" height="27"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="SARAH • LAWRENCE • COLLEGE" id="eJV-a4-yyG">
                                     <font key="font" size="19" name="ITFDevanagariMarathi-Book"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -731,7 +728,7 @@
                             <constraint firstAttribute="trailing" secondItem="iL9-qq-S1U" secondAttribute="trailing" id="QPc-yo-VWj"/>
                             <constraint firstAttribute="trailing" secondItem="EuZ-gW-NFv" secondAttribute="trailing" id="T3t-Th-X8A"/>
                             <constraint firstItem="nem-fn-n4H" firstAttribute="leading" secondItem="ekE-Lt-4ud" secondAttribute="leading" id="de9-ll-Yeh"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="tvG-mt-Idj"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="430" id="tvG-mt-Idj"/>
                         </constraints>
                         <visibilityPriorities>
                             <integer value="1000"/>
@@ -748,13 +745,15 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="168" id="Ggo-T2-qnT"/>
+                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="60" id="Ggo-T2-qnT"/>
+                    <constraint firstAttribute="trailing" secondItem="ekE-Lt-4ud" secondAttribute="trailing" constant="20" id="Mo5-pf-nI6"/>
                     <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="SqJ-h1-B0m"/>
                     <constraint firstItem="ekE-Lt-4ud" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="cY4-Oo-Xvu"/>
-                    <constraint firstAttribute="bottom" secondItem="ekE-Lt-4ud" secondAttribute="bottom" constant="168" id="zpG-Uv-4BZ"/>
+                    <constraint firstItem="ekE-Lt-4ud" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="gx0-rY-M8J"/>
+                    <constraint firstAttribute="bottom" secondItem="ekE-Lt-4ud" secondAttribute="bottom" constant="60" id="zpG-Uv-4BZ"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="245" y="446"/>
+            <point key="canvasLocation" x="177" y="371.5"/>
         </window>
     </objects>
 </document>

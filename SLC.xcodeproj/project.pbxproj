@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5229A2D629CCB64C0006A113 /* Hours.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229A2D529CCB64C0006A113 /* Hours.plist */; };
+		52440F9929CC7DBE00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
+		52440F9A29CC7E7C00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
+		52440F9C29CC8C8200D98273 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9B29CC8C8200D98273 /* Arguments.swift */; };
 		619B784F2787567F00CB38F4 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619B784E2787567F00CB38F4 /* AboutPanel.xib */; };
 		7C2B5B3E2629D31000538114 /* RoundedButtonCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */; };
 		7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B5B442629DB5F00538114 /* TestingPanelController.swift */; };
@@ -72,6 +76,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5229A2D529CCB64C0006A113 /* Hours.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Hours.plist; sourceTree = "<group>"; };
+		52440F9829CC7DBE00D98273 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		52440F9B29CC8C8200D98273 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		619B784E2787567F00CB38F4 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
 		7C2B5B3D2629D31000538114 /* RoundedButtonCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonCellCell.swift; sourceTree = "<group>"; };
 		7C2B5B442629DB5F00538114 /* TestingPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingPanelController.swift; sourceTree = "<group>"; };
@@ -137,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52440F9729CC7DAF00D98273 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				52440F9829CC7DBE00D98273 /* Config.swift */,
+				52440F9B29CC8C8200D98273 /* Arguments.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7CCAB035262442BF00917D07 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +160,7 @@
 				B75DBCAD28F8B3DA00166311 /* Plists */,
 				7CCAB03F262442BF00917D07 /* Products */,
 				B75DBCA428F89B7900166311 /* Scripts */,
+				52440F9729CC7DAF00D98273 /* Common */,
 				7CCAB040262442BF00917D07 /* SessionManager */,
 				B72D52C428F9E4D0006AE631 /* SLCPreloginAgent */,
 			);
@@ -231,6 +248,7 @@
 				950EB4FE2696952700B6CE46 /* edu.slc.logoutcleaner.plist */,
 				7C6F47DE262F7B7700F2DEE9 /* Users.plist */,
 				B72D52BD28F9D731006AE631 /* Config.plist */,
+				5229A2D529CCB64C0006A113 /* Hours.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -335,6 +353,7 @@
 				7CCAB044262442C300917D07 /* Assets.xcassets in Resources */,
 				7CDF32622644627500478813 /* BackupPanel.xib in Resources */,
 				B72D52BE28F9D732006AE631 /* Config.plist in Resources */,
+				5229A2D629CCB64C0006A113 /* Hours.plist in Resources */,
 				7C2B5B492629DB7200538114 /* TestingPanel.xib in Resources */,
 				7C6DBE8E2631B6E60019D97C /* Admins.plist in Resources */,
 				7CCAB047262442C300917D07 /* MainMenu.xib in Resources */,
@@ -406,9 +425,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52440F9C29CC8C8200D98273 /* Arguments.swift in Sources */,
 				7CCAB08B262480DD00917D07 /* WelcomePanelController.swift in Sources */,
 				7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */,
 				B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */,
+				52440F9929CC7DBE00D98273 /* Config.swift in Sources */,
 				7C61B1542627D1DC00D76010 /* IdleTimer.swift in Sources */,
 				7C2B5B50262A1E4F00538114 /* LoginPanelController.swift in Sources */,
 				B75DBCAC28F8AEFF00166311 /* Installer.swift in Sources */,
@@ -428,6 +449,7 @@
 			files = (
 				B72D52C628F9E4D0006AE631 /* AppDelegate.swift in Sources */,
 				B74790B728FB9D6000B70322 /* NSView+Traverse.swift in Sources */,
+				52440F9A29CC7E7C00D98273 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

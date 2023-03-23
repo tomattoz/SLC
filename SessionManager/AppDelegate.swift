@@ -63,11 +63,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let testingSetup: Bool = false
     #endif
 
-    #if DEBUG
+//    #if DEBUG
     let fakeLogout: Bool = CommandLine.arguments.contains("-fakeLogout")
-    #else
-    let fakeLogout: Bool = false
-    #endif
+//    #else
+//    let fakeLogout: Bool = false
+//    #endif
 
     let showCurtain = true
 
@@ -141,7 +141,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         let menu = NSMenu.init()
 
         let fontArttribute = sender?.attributedTitle.fontAttributes(in: NSRange.init(location: 0, length: 1))
-        for rec in [1, 2, 4, 6] {
+        for rec in Config.shared.extendHours {
             let string = ("\(rec) hour\(rec > 1 ? "s" : "")")
             let itm = ExtendMenuItem.init(title: string, action: #selector(AppDelegate.selectExtendTime(_:)), keyEquivalent: "")
             itm.secVal = rec * 60 * 60
@@ -318,7 +318,10 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
 
     }
     
-    func openLoginPanel() {
+    func openLoginPanel() -> Bool {
+        guard Config.shared.usersEnabled else {
+            return false
+        }
         
         if loginController == nil {
             loginController = LoginPanelController.init(windowNibName:"LoginPanel")
@@ -329,6 +332,8 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         DispatchQueue.main.async {
             self.setupLoginPanel()
         }
+        
+        return true
     }
 
     func openWelcomePanel() {
@@ -444,6 +449,21 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         // Cleanup monitored file.
         deleteMonitoredFile()
         
+        if CommandLine.arguments.argUsersEnabled {
+            print(Config.shared.usersEnabled ? "Enabled" : "Disabled")
+            exit(0)
+        }
+
+        if CommandLine.arguments.argEnableUsers {
+            Config.shared.enableUsers()
+            exit(0)
+        }
+
+        if CommandLine.arguments.argDisableUsers {
+            Config.shared.disableUsers()
+            exit(0)
+        }
+
         // Run installer automatically or when manually specified.
         if !disableScriptInstall || (install && !disableScriptInstall ) {
             do {

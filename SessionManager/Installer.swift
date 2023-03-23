@@ -55,6 +55,7 @@ struct Installer {
         guard let cleanerPlist = plist(for: "edu.slc.logoutcleaner"),
               let adminsPlist = plist(for: "Admins"),
               let configPlist = plist(for: "Config"),
+              let hoursPlist = plist(for: "Hours"),
               let usersPlist = plist(for: "Users") else {
                   throw InstallerError.bundledPlistsMissing
               }
@@ -118,12 +119,17 @@ cp -r -f "\(preloginAgentPath)" \(preloginAgentLocation)
 chown -R root:wheel \(preloginAgentLocation)
 chmod ug=rwx,o= \(preloginAgentLocation)
 
+if [ ! -f \((plistsFolder as NSString).appendingPathComponent((hoursPlist as NSString).lastPathComponent)) ]; then
+    cp -f "\(hoursPlist)" \(plistsFolder)
+fi
+
 if [ "\(overwrite)" = "overwrite" ]
 then
     cp -f "\(cleanerPlist)" \(plistsFolder)
     cp -f "\(adminsPlist)" \(plistsFolder)
     cp -f "\(usersPlist)" \(plistsFolder)
     cp -f "\(configPlist)" \(plistsFolder)
+    cp -f "\(hoursPlist)" \(plistsFolder)
 fi
 
 mv -f "\(backupTempToolPlistPath)" \(backupToolPlistPath)

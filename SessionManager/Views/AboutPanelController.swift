@@ -22,9 +22,9 @@ class AboutPanelController: NSWindowController {
     }
     
     @IBAction func openLoginPanel(_ sender: Any) {
-        
-        window?.close()
-        appDelegate.openLoginPanel()
+        if appDelegate.openLoginPanel() {
+            window?.close()
+        }
     }
 
     override func close() {

@@ -4,6 +4,10 @@
 <dict>
 	<key>PreLoginAgentDelay</key>
 	<integer>10</integer>
+	<key>IdleTimeout</key>
+	<integer>1800</integer>
+	<key>UsersEnabled</key>
+	<true/>
 	<key>CleanupHour</key>
 	<integer>0</integer>
 </dict>

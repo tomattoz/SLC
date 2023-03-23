@@ -18,7 +18,7 @@ class WelcomePanelController: NSViewController {
     @IBOutlet weak var timeoutLabel: NSTextField!
 
     @IBAction func openLoginPanel(_ sender: Any) {
-        appDelegate.openLoginPanel()
+        _ = appDelegate.openLoginPanel()
     }
     
     override func awakeFromNib() {

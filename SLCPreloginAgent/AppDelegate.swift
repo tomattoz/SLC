@@ -13,8 +13,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        
         window.canBecomeVisibleWithoutLogin = true
         window.hidesOnDeactivate = false
         window.delegate = self
@@ -23,8 +21,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentView?.traverse(executing: { view in
             (view as? NSProgressIndicator)?.startAnimation(self)
         })
+        closeAfterDelay()
     }
 
+    func applicationDidBecomeActive(_ notification: Notification) {
+        closeAfterDelay()
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
@@ -32,21 +35,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
+    
+    private func closeAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Config.shared.preLoginAgentDelay) {
+            self.window.close()
+        }
+    }
 }
 
 extension AppDelegate: NSWindowDelegate {
     func windowDidBecomeKey(_ notification: Notification) {
-        // Read preferences.
-        var timeout: UInt64 = 10 // 10 seconds
-        let url = URL(fileURLWithPath: "/Library/Management/plists/Config.plist")
-        if let dict = try? NSDictionary(contentsOf: url, error: ()) {
-            timeout = (dict["PreLoginAgentDelay"] as? NSNumber)?.uint64Value ?? timeout
-        }
-        
-        // Set timer to kill the app after a timeout.
-        let dispatchTime = DispatchTime(uptimeNanoseconds: DispatchTime.now().uptimeNanoseconds + timeout * UInt64(NSEC_PER_SEC))
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.window.orderOut(self)
-        }
+        closeAfterDelay()
     }
 }

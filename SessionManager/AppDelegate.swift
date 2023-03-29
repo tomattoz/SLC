@@ -531,7 +531,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         let statusBar = NSStatusBar.system
         statusBarItem = statusBar.statusItem(
             withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.title = "PSU"
+        statusBarItem.button?.title = ""
         let img = NSImage.init(named: "MenuBarIcon")
         if img != nil {
             statusBarItem.button?.image = img

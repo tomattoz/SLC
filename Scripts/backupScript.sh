@@ -1,13 +1,13 @@
 #!/bin/bash
 
+# Will touch this file to let the app know the backup finished.
+MONITOR=/tmp/slc-finished
+rm $MONITOR
+
 LOCK=/tmp/trigger
 [ -f $LOCK ] || exit 0
 
 rm $LOCK
-
-# Will touch this file to let the app know the backup finished.
-MONITOR=/tmp/slc-finished
-rm $MONITOR
 
 #Makes the userDirBkups if it doesn't exist
 mkdir -p /Library/Management/userDirBkups

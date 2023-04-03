@@ -49,6 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var idleTimer = IdleTimer()
     
     let monitoredURL = URL(fileURLWithPath: "/tmp/slc-finished")
+    let backupTriggerURL = URL(fileURLWithPath: "/tmp/trigger")
     var directoryMonitor: DirectoryMonitor?
     
     let plistsFolder = "/Library/Management/plists"
@@ -102,16 +103,22 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     func doBackup() {
-        // Start monitoring /tmp for changes.
-        directoryMonitor = DirectoryMonitor(url: monitoredURL.deletingLastPathComponent())
-        directoryMonitor?.startMonitoring()
-        
         do {
-            try "\(NSUserName())\n".write(toFile: "/tmp/trigger", atomically: true, encoding: .utf8)
+            try "\(NSUserName())\n".write(toFile: backupTriggerURL.path, atomically: true, encoding: .utf8)
         }
         catch  {
-            NSAlert(error: error).runModal()
+            DispatchQueue.main.async {
+                NSAlert(error: error).runModal()
+            }
             return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // Start monitoring /tmp for changes.
+            self.checkForBackupCompletedMarker()
+            self.directoryMonitor = DirectoryMonitor(url: self.monitoredURL.deletingLastPathComponent())
+            self.directoryMonitor?.startMonitoring()
+            self.directoryMonitor?.delegate = self
         }
     }
     
@@ -620,18 +627,22 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     // MARK: - Private Functions
-}
-
-extension AppDelegate: DirectoryMonitorDelegate {
-    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
-        if FileManager.default.fileExists(atPath: monitoredURL.path) {
-            directoryMonitor.stopMonitoring()
+    
+    private func checkForBackupCompletedMarker() {
+        if FileManager.default.fileExists(atPath: monitoredURL.path) && !FileManager.default.fileExists(atPath: backupTriggerURL.path) {
+            directoryMonitor?.stopMonitoring()
             deleteMonitoredFile()
             
             DispatchQueue.main.async {
                 NSApp.reply(toApplicationShouldTerminate: true)
             }
         }
+    }
+}
+
+extension AppDelegate: DirectoryMonitorDelegate {
+    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        checkForBackupCompletedMarker()
     }
 }
 

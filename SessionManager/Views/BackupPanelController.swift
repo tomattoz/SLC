@@ -12,7 +12,7 @@ class BackupPanelController: NSViewController {
 
     private lazy var timeout: TimeInterval = {
         #if DEBUG
-        5 // 5 seconds
+        50 // 5 seconds
         #else
         5 * 60 // 5 minutes
         #endif

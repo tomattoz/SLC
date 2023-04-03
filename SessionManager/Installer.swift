@@ -168,27 +168,25 @@ rm /tmp/installer.sh
             throw InstallerError.permissionsError
         }
         
-        // Check if we are running as sudo, so we don't need to run the installer
-        // with osascript.
-        let process = Process()
+        // Check if we are running as sudo, so we don't need to run the AppleScript
 
         if getuid() == 0 {
+            let process = Process()
+
             // We are root, so we run the install normally.
             print("Running installer as root")
             process.launchPath  = "/tmp/installer.sh"
+            process.launch()
+            process.waitUntilExit()
+
+            let status = process.terminationStatus
+            if status != 0 {
+                throw InstallerError.installerFailed(path: Self.installerPath)
+            }
         } else {
             // Run installer with admin privileges.
             print("Running installer with elevated privileges")
-            process.launchPath = "/usr/bin/osascript"
-            process.arguments = ["-e", "do shell script \"/tmp/installer.sh\" with administrator privileges"]
-        }
-
-        process.launch()
-        process.waitUntilExit()
-
-        let status = process.terminationStatus
-        if status != 0 {
-            throw InstallerError.installerFailed(path: Self.installerPath)
+            NSAppleScript(source: "do shell script \"/tmp/installer.sh\" with administrator privileges")!.executeAndReturnError(nil)
         }
     }
     // MARK: - Private Functions

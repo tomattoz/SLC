@@ -78,7 +78,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var welcomeController:WelcomePanelController?
     var testingController:TestingPanelController?
     var backupController:BackupPanelController?
-
     var curtainController:CurtainWindowController?
 
     let extendText = """
@@ -240,12 +239,12 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         welcomeController = nil
         dismissCurtainWindow()
     }
-        
+    
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         if isAdmin {
             return .terminateNow
         }
-                
+        
         if isSystemLogout {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) { [self] in
                 let pids = Processes.listAllPids()
@@ -265,7 +264,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         }
 
         DispatchQueue.main.async { [self] in
-            
             self.acceptTermsLogin()
             
             if self.backupController == nil {
@@ -274,8 +272,6 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             }
             
             self.showCurtainWindow(contentController: self.backupController!)
-
-            //printPIDSInfo(pids: pids)
         }
         
         return .terminateLater
@@ -496,22 +492,17 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         
         let username = NSUserName()
         let path = adminsPlistURL.path
+      
         if !FileManager.default.fileExists(atPath: path) {
-            let process = Process()
-            process.launchPath = "/usr/bin/osascript"
-            process.arguments = ["-e", "display dialog \"Cant find Admins plist\"  giving up after 3"]
-            process.launch()
+            NSAlert(error: "Cant find Admins plist").runModal()
             self.isAdmin = true
             NSApp.terminate(self)
 
         } else {
             let plistDictionary = NSDictionary(contentsOfFile: path) as? Dictionary<String, String>
+
             if plistDictionary == nil {
-                
-                let process = Process()
-                process.launchPath = "/usr/bin/osascript"
-                process.arguments = ["-e", "display dialog \"Error reading Admins plist\"  giving up after 3"]
-                process.launch()
+                NSAlert(error: "Error reading Admins plist").runModal()
                 self.isAdmin = true
                 NSApp.terminate(self)
             } else {

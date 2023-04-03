@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5229A2D629CCB64C0006A113 /* Hours.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229A2D529CCB64C0006A113 /* Hours.plist */; };
+		523247A229DB1A990034B043 /* Swift.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523247A129DB1A990034B043 /* Swift.Error.swift */; };
 		52440F9929CC7DBE00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
 		52440F9A29CC7E7C00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
 		52440F9C29CC8C8200D98273 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9B29CC8C8200D98273 /* Arguments.swift */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		5229A2D529CCB64C0006A113 /* Hours.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Hours.plist; sourceTree = "<group>"; };
+		523247A129DB1A990034B043 /* Swift.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.Error.swift; sourceTree = "<group>"; };
 		52440F9829CC7DBE00D98273 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		52440F9B29CC8C8200D98273 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		619B784E2787567F00CB38F4 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				52440F9829CC7DBE00D98273 /* Config.swift */,
 				52440F9B29CC8C8200D98273 /* Arguments.swift */,
+				523247A129DB1A990034B043 /* Swift.Error.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52440F9C29CC8C8200D98273 /* Arguments.swift in Sources */,
+				523247A229DB1A990034B043 /* Swift.Error.swift in Sources */,
 				7CCAB08B262480DD00917D07 /* WelcomePanelController.swift in Sources */,
 				7C2B5B452629DB5F00538114 /* TestingPanelController.swift in Sources */,
 				B7858E182784D4F4008992E9 /* CurtainContentController.swift in Sources */,

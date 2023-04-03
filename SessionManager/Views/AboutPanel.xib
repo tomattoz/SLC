@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,14 +20,14 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="About Window" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="270" height="160"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <rect key="contentRect" x="196" y="240" width="280" height="160"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="270" height="160"/>
+                <rect key="frame" x="0.0" y="0.0" width="280" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5mw-XW-2yc" userLabel="Version">
-                        <rect key="frame" x="18" y="37" width="234" height="18"/>
+                        <rect key="frame" x="23" y="37" width="234" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="Bwg-qN-wDX"/>
                             <constraint firstAttribute="height" constant="18" id="PIY-49-MN4"/>
@@ -41,10 +41,9 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZAU-54-1qS" userLabel="Copyright">
-                        <rect key="frame" x="18" y="20" width="234" height="18"/>
+                        <rect key="frame" x="18" y="20" width="244" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="cQm-nV-w9Q"/>
-                            <constraint firstAttribute="width" constant="230" id="hx0-Jz-gFM"/>
                         </constraints>
                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="j1k-6G-ycs">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -53,15 +52,15 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PML-IG-PM7">
-                        <rect key="frame" x="111" y="92" width="48" height="48"/>
+                        <rect key="frame" x="116" y="92" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="CLP-Mi-f4N"/>
                             <constraint firstAttribute="height" constant="48" id="qCF-Ts-NFV"/>
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="m5b-gW-o06"/>
                     </imageView>
-                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-NF-C3Y">
-                        <rect key="frame" x="103" y="89" width="64" height="64"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yeU-NF-C3Y">
+                        <rect key="frame" x="108" y="89" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="JWt-ZB-Qfr"/>
                             <constraint firstAttribute="height" constant="64" id="xPb-Dk-IfN"/>
@@ -75,7 +74,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iTI-0n-EgK" userLabel="Name">
-                        <rect key="frame" x="18" y="56" width="234" height="25"/>
+                        <rect key="frame" x="23" y="56" width="234" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="eRG-dS-f4V"/>
                             <constraint firstAttribute="width" constant="230" id="kFD-bz-I8t"/>
@@ -93,11 +92,14 @@
                     <constraint firstItem="PML-IG-PM7" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="2F0-W4-hpy"/>
                     <constraint firstItem="PML-IG-PM7" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="7xT-Ut-cpZ"/>
                     <constraint firstItem="iTI-0n-EgK" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="AlV-zP-67H"/>
+                    <constraint firstAttribute="trailing" secondItem="ZAU-54-1qS" secondAttribute="trailing" constant="20" symbolic="YES" id="BEz-Yo-nxS"/>
+                    <constraint firstItem="yeU-NF-C3Y" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="7" id="Cwy-kp-wfx"/>
                     <constraint firstItem="5mw-XW-2yc" firstAttribute="top" secondItem="iTI-0n-EgK" secondAttribute="bottom" constant="1" id="JUe-8W-KZy"/>
                     <constraint firstItem="yeU-NF-C3Y" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="MXL-27-pfX"/>
                     <constraint firstItem="iTI-0n-EgK" firstAttribute="top" secondItem="PML-IG-PM7" secondAttribute="bottom" constant="11" id="PGr-fi-bSs"/>
                     <constraint firstItem="ZAU-54-1qS" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="SQ0-LQ-rH2"/>
                     <constraint firstAttribute="bottom" secondItem="ZAU-54-1qS" secondAttribute="bottom" constant="20" symbolic="YES" id="XDu-21-HLN"/>
+                    <constraint firstItem="ZAU-54-1qS" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="c7H-FU-Mk9"/>
                     <constraint firstItem="ZAU-54-1qS" firstAttribute="top" secondItem="5mw-XW-2yc" secondAttribute="bottom" constant="-1" id="lWC-nk-taK"/>
                     <constraint firstItem="5mw-XW-2yc" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="xW0-HK-iq7"/>
                 </constraints>

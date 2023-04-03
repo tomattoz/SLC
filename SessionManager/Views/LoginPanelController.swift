@@ -51,21 +51,15 @@ class LoginPanelController: NSWindowController, NSTextFieldDelegate, NSControlTe
         
         let path = appDelegate.usersPlistURL.path
         if !FileManager.default.fileExists(atPath: path) {
-            let process = Process()
-            process.launchPath = "/usr/bin/osascript"
-            process.arguments = ["-e", "display dialog \"Cant find Users plist\"  giving up after 3"]
-            process.launch()
             appDelegate.cancelLogin(true)
+            NSAlert(error: "Can't find Users plist").runModal()
 
         } else {
             let plistDictionary = NSDictionary(contentsOfFile: path) as? Dictionary<String, String>
+          
             if plistDictionary == nil {
-                
-                let process = Process()
-                process.launchPath = "/usr/bin/osascript"
-                process.arguments = ["-e", "display dialog \"Error reading Users plist\"  giving up after 3"]
-                process.launch()
                 appDelegate.cancelLogin(true)
+                NSAlert(error: "Error reading Users plist").runModal()
             } else {
                 usersCredentials = plistDictionary
             }

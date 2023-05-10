@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5229A2D629CCB64C0006A113 /* Hours.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229A2D529CCB64C0006A113 /* Hours.plist */; };
 		523247A229DB1A990034B043 /* Swift.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523247A129DB1A990034B043 /* Swift.Error.swift */; };
+		5232B75F2A0A6DB400C33E21 /* Dialogs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5232B75E2A0A6DB400C33E21 /* Dialogs.plist */; };
 		52440F9929CC7DBE00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
 		52440F9A29CC7E7C00D98273 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9829CC7DBE00D98273 /* Config.swift */; };
 		52440F9C29CC8C8200D98273 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52440F9B29CC8C8200D98273 /* Arguments.swift */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		5229A2D529CCB64C0006A113 /* Hours.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Hours.plist; sourceTree = "<group>"; };
 		523247A129DB1A990034B043 /* Swift.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.Error.swift; sourceTree = "<group>"; };
+		5232B75E2A0A6DB400C33E21 /* Dialogs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dialogs.plist; sourceTree = "<group>"; };
 		52440F9829CC7DBE00D98273 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		52440F9B29CC8C8200D98273 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		619B784E2787567F00CB38F4 /* AboutPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPanel.xib; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				7C6F47DE262F7B7700F2DEE9 /* Users.plist */,
 				B72D52BD28F9D731006AE631 /* Config.plist */,
 				5229A2D529CCB64C0006A113 /* Hours.plist */,
+				5232B75E2A0A6DB400C33E21 /* Dialogs.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			files = (
 				7C6F47DF262F7B7700F2DEE9 /* Users.plist in Resources */,
 				B75DBCAA28F8ABA500166311 /* cleanupScript.sh in Resources */,
+				5232B75F2A0A6DB400C33E21 /* Dialogs.plist in Resources */,
 				7CCAB044262442C300917D07 /* Assets.xcassets in Resources */,
 				7CDF32622644627500478813 /* BackupPanel.xib in Resources */,
 				B72D52BE28F9D732006AE631 /* Config.plist in Resources */,
@@ -624,7 +628,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1.13;
-				DEVELOPMENT_TEAM = P84XC7H67P;
+				DEVELOPMENT_TEAM = BLY6A8TNQK;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SessionManager/Info.plist;
@@ -652,7 +656,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1.13;
-				DEVELOPMENT_TEAM = P84XC7H67P;
+				DEVELOPMENT_TEAM = BLY6A8TNQK;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SessionManager/Info.plist;

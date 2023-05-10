@@ -11,6 +11,7 @@ final class Config {
     static let shared = Config()
     private let url = URL(fileURLWithPath: "/Library/Management/plists/Config.plist")
     private let hoursUrl = URL(fileURLWithPath: "/Library/Management/plists/Hours.plist")
+    private let dialogsUrl = URL(fileURLWithPath: "/Library/Management/plists/Dialogs.plist")
 
     var preLoginAgentDelay: TimeInterval {
         read(key: "PreLoginAgentDelay", defaultValue: 10)
@@ -33,6 +34,10 @@ final class Config {
         return result
     }
     
+    var allowExtend: Bool {
+        read(key: "allowExtend", defaultValue: false)
+    }
+
     private init() {}
 
     private func read<T>(key: String, defaultValue: T) -> T {
@@ -64,5 +69,72 @@ final class Config {
         write { dict in
             dict["UsersEnabled"] = false
         }
+    }
+}
+
+extension Config {
+    var dialogExtendText: String {
+        return dialog(name: "Extend", prop: "text", default:
+        """
+        You have successfully login.
+        This option should only be used for film students and faculty where an extend period of time is needed after "Extend" is chosen and time is done.
+        If you don't use the computer the computer will log you off.
+        Click "extend" to Accept the terms or click "Log Off"
+        """)
+    }
+    
+    var dialogIdleText: String {
+        return dialog(name: "Idle", prop: "text", default:
+        """
+        The Computer has detected that is not in use. Click "Log Off" or click "Okay" to confirm it is in use.
+        """)
+    }
+
+    var dialogBackupText1: String {
+        return dialog(name: "Backup", prop: "text1", default:
+        """
+        System maintenance
+        """)
+    }
+
+    var dialogBackupText2: String {
+        return dialog(name: "Backup", prop: "text2", default:
+        """
+        help desk
+        """)
+    }
+
+    var dialogBackupText3: String {
+        return dialog(name: "Backup", prop: "text3", default:
+        """
+        SARAH • LAWRENCE • COLLEGE
+        """)
+    }
+    
+    var dialogBackupText4: String {
+        return dialog(name: "Backup", prop: "text4", default:
+        """
+        The system is cleaning up. Please do not power the computer down.
+        """)
+    }
+
+    var dialogWelcomeText: String {
+        return dialog(name: "Welcome", prop: "text", default:
+        """
+        Welcome to Sarah Lawrence College.
+
+        This computer will log you off if not in use and we do not save your work.  
+        You have 120 seconds to the accept terms.
+        """)
+    }
+
+    private func dialog(name: String, prop: String, default defaultText: String) -> String {
+        guard
+            let root = try? NSDictionary(contentsOf: dialogsUrl, error: ()),
+            let dialog = root[name] as? NSDictionary,
+            let result = dialog[prop] as? String
+        else { return defaultText }
+        
+        return result
     }
 }

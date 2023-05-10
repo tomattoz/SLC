@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BackupPanelController" customModule="SLC" customModuleProvider="target">
             <connections>
                 <outlet property="progress" destination="4Oc-Th-f9E" id="q0g-Qk-CMP"/>
+                <outlet property="text1" destination="gtd-iB-n7b" id="6c1-bM-yNK"/>
+                <outlet property="text2" destination="sqy-L1-NEY" id="P40-xE-FIL"/>
+                <outlet property="text3" destination="pH3-xe-a09" id="O7e-Va-rRS"/>
+                <outlet property="text4" destination="BU6-Ys-SRs" id="Rnp-kc-oE4"/>
                 <outlet property="view" destination="or2-jd-n8L" id="GmF-gA-0QW"/>
             </connections>
         </customObject>

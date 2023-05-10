@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Extend</key>
+	<dict>
+		<key>text</key>
+		<string>You have successfully login.
+This option should only be used for film students and faculty where an extend period of time is needed after &quot;Extend&quot; is chosen and time is done.
+If you don&apos;t use the computer the computer will log you off.
+Click &quot;extend&quot; to Accept the terms or click &quot;Log Off&quot;
+</string>
+	</dict>
+	<key>Idle</key>
+	<dict>
+		<key>text</key>
+		<string>The Computer has detected that is not in use. Click &quot;Log Off&quot; or click &quot;Okay&quot; to confirm it is in use.</string>
+	</dict>
+	<key>Backup</key>
+	<dict>
+		<key>text1</key>
+		<string>System maintenance</string>
+		<key>text2</key>
+		<string>help desk</string>
+		<key>text3</key>
+		<string>SARAH • LAWRENCE • COLLEGE</string>
+		<key>text4</key>
+		<string>The system is cleaning up. Please do not power the computer down.</string>
+	</dict>
+	<key>Welcome</key>
+	<dict>
+		<key>text</key>
+		<string>Welcome to Sarah Lawrence College.
+
+This computer will log you off if not in use and we do not save your work.  
+You have 120 seconds to the accept terms.</string>
+	</dict>
+</dict>
+</plist>

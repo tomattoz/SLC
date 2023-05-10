@@ -81,21 +81,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var backupController:BackupPanelController?
     var curtainController:CurtainWindowController?
 
-    let extendText = """
-You have successfully login.
-This option should only be used for film students and faculty where an extend period of time is needed after "Extend" is chosen and time is done.
-If you don't use the computer the computer will log you off.
-Click "extend" to Accept the terms or click "Log Off"
-"""
- 
-    let welcomeText = """
-Welcome to Sarah Lawrence College.
-This computer will log you off if not in use and we do not save your work. You have 120 seconds to accept terms.
-"""
-
-    let timeoutText = """
-The Computer has detected that is not in use. Click "Log Off" or click "Okay" to confirm it is in use.
-"""
     func stopAllprocesses() {
         let pid = getpid()
         print("getpid(): \(pid))\n\n\n")
@@ -228,21 +213,11 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     }
     
     func completeLogin() {
-        
-        if welcomeController == nil {
-            welcomeController = WelcomePanelController(nibName: "WelcomePanel",
-                                                       bundle: Bundle.main)
-        }
-        
-        showCurtainWindow(contentController: welcomeController!)
-
-        self.presentExtendPanel()
+        openExtendPanel()
     }
     
     func acceptTermsLogin() {
-
         removeWelcomeTimeout()
-        
         welcomeController = nil
         dismissCurtainWindow()
     }
@@ -251,7 +226,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         if isAdmin {
             return .terminateNow
         }
-        
+
         if isSystemLogout {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) { [self] in
                 let pids = Processes.listAllPids()
@@ -339,7 +314,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
         return true
     }
 
-    func openWelcomePanel() {
+    func openIdlePanel() {
         
         if welcomeController != nil {
             dismissCurtainWindow()
@@ -361,7 +336,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
 
             self.showCurtainWindow(contentController: self.welcomeController!)
 
-            self.welcomeController?.textView.string = self.timeoutText
+            self.welcomeController?.textView.string = Config.shared.dialogIdleText
             self.welcomeController?.timerView.isHidden = false
             self.welcomeController?.secView.isHidden = false
             self.welcomeController?.LoginButton.isHidden = false
@@ -372,6 +347,17 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
 
             self.resetWelcomeTimeout()
         })
+    }
+    
+    func openExtendPanel() {
+        if welcomeController == nil {
+            welcomeController = WelcomePanelController(nibName: "WelcomePanel",
+                                                       bundle: Bundle.main)
+        }
+        
+        showCurtainWindow(contentController: welcomeController!)
+
+        self.presentExtendPanel()
     }
 
     func resetWelcomeTimeout() {
@@ -404,7 +390,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
     
     func presentExtendPanel() {
 
-        welcomeController?.textView.string = extendText
+        welcomeController?.textView.string = Config.shared.dialogExtendText
         welcomeController?.AcceptButton.title = "Extend"
         welcomeController?.AcceptButton.target = self
         welcomeController?.AcceptButton.action = #selector(AppDelegate.presentExtendPopUpMenu(_:))
@@ -564,6 +550,8 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
                         
         if showCurtain {
             welcomeController = WelcomePanelController(nibName: "WelcomePanel", bundle: Bundle.main)
+            _ = welcomeController?.view
+            welcomeController?.textView.string = Config.shared.dialogWelcomeText
             showCurtainWindow(contentController: welcomeController!)
         }
     }
@@ -634,6 +622,7 @@ The Computer has detected that is not in use. Click "Log Off" or click "Okay" to
             deleteMonitoredFile()
             
             DispatchQueue.main.async {
+                Thread.sleep(forTimeInterval: 5)
                 NSApp.reply(toApplicationShouldTerminate: true)
             }
         }

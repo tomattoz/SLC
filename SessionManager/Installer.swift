@@ -56,6 +56,7 @@ struct Installer {
               let adminsPlist = plist(for: "Admins"),
               let configPlist = plist(for: "Config"),
               let hoursPlist = plist(for: "Hours"),
+              let dialogsPlist = plist(for: "Dialogs"),
               let usersPlist = plist(for: "Users") else {
                   throw InstallerError.bundledPlistsMissing
               }
@@ -130,6 +131,7 @@ then
     cp -f "\(usersPlist)" \(plistsFolder)
     cp -f "\(configPlist)" \(plistsFolder)
     cp -f "\(hoursPlist)" \(plistsFolder)
+    cp -f "\(dialogsPlist)" \(plistsFolder)
 fi
 
 mv -f "\(backupTempToolPlistPath)" \(backupToolPlistPath)

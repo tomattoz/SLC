@@ -30,7 +30,14 @@ class IdleTimer: NSObject {
                 self.secIdle = NSNumber.init(value: idle < self.idleTimeout ? CFTimeInterval(idle) : self.idleTimeout )
             } else {
                 self.secIdle = NSNumber(value: self.idleTimeout)
-                (NSApplication.shared.delegate as! AppDelegate).openWelcomePanel()
+               
+                if Config.shared.allowExtend {
+                    (NSApplication.shared.delegate as! AppDelegate).presentExtendPanel()
+                }
+                else {
+                    (NSApplication.shared.delegate as! AppDelegate).openIdlePanel()
+                }
+               
                 timer.invalidate()
             }
         })

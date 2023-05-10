@@ -16,12 +16,13 @@ class AboutPanelController: NSWindowController {
     @IBOutlet weak var versionLabel: NSTextField!
     @IBOutlet weak var copyrightLabel: NSTextField!
     
-    override func windowDidLoad() {
-        super.windowDidLoad()
-
-    }
-    
     @IBAction func openLoginPanel(_ sender: Any) {
+        if Config.shared.allowExtend {
+            appDelegate.openExtendPanel()
+            window?.close()
+            return
+        }
+        
         if appDelegate.openLoginPanel() {
             window?.close()
         }

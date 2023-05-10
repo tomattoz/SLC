@@ -9,6 +9,10 @@ import Cocoa
 
 class BackupPanelController: NSViewController {
     @IBOutlet private var progress: NSProgressIndicator!
+    @IBOutlet private var text1: NSTextField!
+    @IBOutlet private var text2: NSTextField!
+    @IBOutlet private var text3: NSTextField!
+    @IBOutlet private var text4: NSTextField!
 
     private lazy var timeout: TimeInterval = {
         #if DEBUG
@@ -17,6 +21,15 @@ class BackupPanelController: NSViewController {
         5 * 60 // 5 minutes
         #endif
     }()
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        text1.stringValue = Config.shared.dialogBackupText1
+        text2.stringValue = Config.shared.dialogBackupText2
+        text3.stringValue = Config.shared.dialogBackupText3
+        text4.stringValue = Config.shared.dialogBackupText4
+    }
     
     override func viewDidAppear() {
         super.viewDidAppear()

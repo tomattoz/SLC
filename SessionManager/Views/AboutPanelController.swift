@@ -39,14 +39,19 @@ class AboutPanelController: NSWindowController {
     }
     
     func setup() {
-        iconButton.image = NSImage.init(named: "AppIcon")!
-        nameField.stringValue = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
-        versionLabel.stringValue = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-        copyrightLabel.stringValue = Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String ?? ""
+        var appIcon = NSImage(named: "AppIcon")
+        
+        if let iconURL = Config.shared.applicationIcon, let iconImage = NSImage(contentsOf: iconURL) {
+            appIcon = iconImage
+        }
 
-        
-        
+        iconButton.image = appIcon
+        nameField.stringValue = Config.shared.dialogAboutText1
+        versionLabel.stringValue = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        copyrightLabel.stringValue = Config.shared.dialogAboutText2
+
         appDelegate = NSApplication.shared.delegate as? AppDelegate
+       
         if appDelegate == nil {
             print("Error: no app delegate")
         }

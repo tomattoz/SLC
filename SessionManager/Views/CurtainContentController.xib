@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CurtainContentController" customModule="SLC" customModuleProvider="target">
             <connections>
                 <outlet property="boxedView" destination="wo2-sl-ECk" id="x77-ra-HdC"/>
+                <outlet property="imageView" destination="vKb-RQ-QEz" id="BAd-uI-caI"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -26,10 +27,28 @@
                             <view key="contentView" id="6aa-YI-gdo">
                                 <rect key="frame" x="4" y="5" width="298" height="184"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-RQ-QEz">
+                                        <rect key="frame" x="0.0" y="0.0" width="298" height="184"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="uO9-T1-M04"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="wantsLayer" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="vKb-RQ-QEz" secondAttribute="bottom" id="3rY-sQ-NRH"/>
+                                    <constraint firstAttribute="trailing" secondItem="vKb-RQ-QEz" secondAttribute="trailing" id="5fP-qY-b6Y"/>
+                                    <constraint firstItem="vKb-RQ-QEz" firstAttribute="top" secondItem="6aa-YI-gdo" secondAttribute="top" id="RzG-op-LD2"/>
+                                    <constraint firstItem="vKb-RQ-QEz" firstAttribute="leading" secondItem="6aa-YI-gdo" secondAttribute="leading" id="eNM-7E-5oC"/>
+                                </constraints>
                             </view>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="0I8-wR-y89"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="wFo-CF-MmQ"/>
+                                <constraint firstAttribute="height" priority="750" constant="200" id="0I8-wR-y89"/>
+                                <constraint firstAttribute="width" priority="750" constant="300" id="wFo-CF-MmQ"/>
                             </constraints>
                         </box>
                     </subviews>

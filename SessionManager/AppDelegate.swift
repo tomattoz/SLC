@@ -19,12 +19,51 @@ class ExtendMenuItem: NSMenuItem {
 //
 // The app can be run with sudo from the command line (remotely) to do the
 // first install by running: sudo /Applications/SLC.app/Contents/MacOS/SLC -install
+
+// Time Extend
 //
+// -enableUsers enable ability to login by pressing application icon in About dialog
+// -disableUsers disable ability to login
+// -usersEnabled returns true if the aaility to login is enabled
+
 // Other command lines useful for debugging:
 //
 // -disableScriptInstall : won't install script when running.
 // -testing : show an orange testing window.
 // -fakeLogout : do not really logout.
+
+// Config.plist
+// - allowExtend (enable ability to extend hours for regular users)
+// - UsersEnabled (enable ability to login by pressing application icon in About dialog)
+// - AppIcon (path is relative to plist directory)
+
+// Hours.plist
+// Array of hours to give user a choice for time extension
+
+// Dialogs.plist
+// The following dialogs can be customized:
+//
+// 1. Extend (extend time dialog)
+//      - text
+//
+// 2. Idle (appears when no events occured during some time)
+//      - text
+//
+// 3. Backup (appears while application perform backup of user data)
+//      - text1
+//      - text2
+//      - text3
+//      - text4
+//      - image (background image with aspect fit from the center, path is relative to plist directory)
+//
+// 4. Welcome
+//      - text
+//      - image (background image with aspect fit from the center, path is relative to plist directory)
+//
+// 5. About
+//      - text1
+//      - text2
+
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -52,7 +91,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let backupTriggerURL = URL(fileURLWithPath: "/tmp/trigger")
     var directoryMonitor: DirectoryMonitor?
     
-    let plistsFolder = "/Library/Management/plists"
     lazy var adminsPlistURL = URL(fileURLWithPath: "\(plistsFolder)/Admins.plist")
     lazy var usersPlistURL = URL(fileURLWithPath: "\(plistsFolder)/Users.plist")
 
@@ -253,7 +291,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                               bundle: Bundle.main)
             }
             
-            self.showCurtainWindow(contentController: self.backupController!)
+            self.showCurtainWindow(contentController: self.backupController!,
+                                   bgURL: Config.shared.dialogBackupImage)
         }
         
         return .terminateLater
@@ -334,7 +373,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
 
-            self.showCurtainWindow(contentController: self.welcomeController!)
+            self.showCurtainWindow(contentController: self.welcomeController!,
+                                   bgURL: Config.shared.dialogWelcomeImage)
 
             self.welcomeController?.textView.string = Config.shared.dialogIdleText
             self.welcomeController?.timerView.isHidden = false
@@ -355,7 +395,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                        bundle: Bundle.main)
         }
         
-        showCurtainWindow(contentController: welcomeController!)
+        showCurtainWindow(contentController: welcomeController!,
+                          bgURL: Config.shared.dialogWelcomeImage)
 
         self.presentExtendPanel()
     }
@@ -434,6 +475,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        NSApp.orderFrontStandardAboutPanel(options: [:])
     }
 
+    private func setupApplicationIcon() {
+        let statusBar = NSStatusBar.system
+        var statusBarIcon = NSImage(named: "MenuBarIcon")
+        let statusBarMenu = NSMenu(title: "App")
+
+        if let iconURL = Config.shared.applicationIcon, let iconImage = NSImage(contentsOf: iconURL) {
+            NSApplication.shared.applicationIconImage = iconImage
+            
+            if let resized = iconImage.resized(to: NSSize(width: 16, height: 16)) {
+                statusBarIcon = resized
+            }
+        }
+
+        statusBarMenu.addItem(
+            withTitle: "About",
+            action: #selector(AppDelegate.presendAbout(_:)),
+            keyEquivalent: "")
+
+        statusBarItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
+        statusBarItem.button?.title = ""
+        statusBarItem.button?.image = statusBarIcon
+        statusBarItem.button?.imageScaling = .scaleProportionallyDown
+        statusBarItem.menu = statusBarMenu
+    }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        setupApplicationIcon()
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Cleanup monitored file.
         deleteMonitoredFile()
@@ -511,23 +581,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        
-        let statusBar = NSStatusBar.system
-        statusBarItem = statusBar.statusItem(
-            withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.title = ""
-        let img = NSImage.init(named: "MenuBarIcon")
-        if img != nil {
-            statusBarItem.button?.image = img
-        }
-        let statusBarMenu = NSMenu(title: "App")
-        statusBarItem.menu = statusBarMenu
-
-        statusBarMenu.addItem(
-            withTitle: "About",
-            action: #selector(AppDelegate.presendAbout(_:)),
-            keyEquivalent: "")
-        
         if testingSetup {
             testingController = TestingPanelController.init(windowNibName:"TestingPanel")
             testingController!.window?.makeKeyAndOrderFront(self)
@@ -552,13 +605,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             welcomeController = WelcomePanelController(nibName: "WelcomePanel", bundle: Bundle.main)
             _ = welcomeController?.view
             welcomeController?.textView.string = Config.shared.dialogWelcomeText
-            showCurtainWindow(contentController: welcomeController!)
+            showCurtainWindow(contentController: welcomeController!,
+                              bgURL: Config.shared.dialogWelcomeImage)
         }
     }
     
-    func showCurtainWindow(contentController: NSViewController) {
+    func showCurtainWindow(contentController: NSViewController, bgURL: URL?) {
         curtainController = CurtainWindowController(windowNibName:"Curtain")
-        curtainController?.setBoxedContentViewController(contentController)
+        curtainController?.setBoxedContentViewController(vc: contentController, bg: bgURL)
         curtainController!.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
     }
@@ -681,5 +735,28 @@ fileprivate struct Processes {
         }
         
         return pids
+    }
+}
+
+
+private extension NSImage {
+    func resized(to newSize: NSSize) -> NSImage? {
+        if let bitmapRep = NSBitmapImageRep(
+            bitmapDataPlanes: nil, pixelsWide: Int(newSize.width), pixelsHigh: Int(newSize.height),
+            bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+            colorSpaceName: .calibratedRGB, bytesPerRow: 0, bitsPerPixel: 0
+        ) {
+            bitmapRep.size = newSize
+            NSGraphicsContext.saveGraphicsState()
+            NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: bitmapRep)
+            draw(in: NSRect(x: 0, y: 0, width: newSize.width, height: newSize.height), from: .zero, operation: .copy, fraction: 1.0)
+            NSGraphicsContext.restoreGraphicsState()
+
+            let resizedImage = NSImage(size: newSize)
+            resizedImage.addRepresentation(bitmapRep)
+            return resizedImage
+        }
+
+        return nil
     }
 }

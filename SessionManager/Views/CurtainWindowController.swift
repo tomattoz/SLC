@@ -9,12 +9,11 @@ import Cocoa
 
 class CurtainWindowController: NSWindowController, NSWindowDelegate {
     @IBOutlet var curtainWindow: NSWindow!
-    
+
     private var curtainContentController: CurtainContentController!
     
     override func awakeFromNib() {
         createContentViewController()
-        
         super.awakeFromNib()
     }
     
@@ -32,10 +31,9 @@ class CurtainWindowController: NSWindowController, NSWindowDelegate {
         }        
     }
     
-    func setBoxedContentViewController(_ vc: NSViewController) {
+    func setBoxedContentViewController(vc: NSViewController, bg: URL?) {
         createContentViewController()
-        
-        curtainContentController.setContentViewController(vc)
+        curtainContentController.setContentViewController(vc: vc, bg: bg)
     }
     
     private func createContentViewController() {

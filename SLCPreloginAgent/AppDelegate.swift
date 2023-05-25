@@ -11,8 +11,34 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet private var window: NSWindow!
-    
+    @IBOutlet private var text1: NSTextField!
+    @IBOutlet private var text2: NSTextField!
+    @IBOutlet private var text3: NSTextField!
+    @IBOutlet private var imageView: NSView!
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        do {
+            try FileManager.default.moveItem(at: URL(fileURLWithPath: "/Users/test/Library"),
+                                             to: URL(fileURLWithPath: "/Library/Management/userDirBkups/Library/asd"))
+        }
+        catch {
+            print("\(error)")
+        }
+
+        // setup text
+        text1.stringValue = Config.shared.dialogBackupText1
+        text2.stringValue = Config.shared.dialogBackupText2
+        text3.stringValue = Config.shared.dialogBackupText3
+
+        // Setup custom background image
+        if let url = Config.shared.dialogBackupImage, let image = NSImage(contentsOf: url) {
+            imageView.wantsLayer = true;
+            imageView.layer = CALayer()
+            imageView.layer?.contentsGravity = .resizeAspectFill
+            imageView.layer?.contents = image
+            imageView.layer?.cornerRadius = 4
+        }
+
         window.canBecomeVisibleWithoutLogin = true
         window.hidesOnDeactivate = false
         window.delegate = self

@@ -7,11 +7,13 @@
 
 import Foundation
 
+let plistsFolder = "/Library/Management/plists"
+
 final class Config {
     static let shared = Config()
-    private let url = URL(fileURLWithPath: "/Library/Management/plists/Config.plist")
-    private let hoursUrl = URL(fileURLWithPath: "/Library/Management/plists/Hours.plist")
-    private let dialogsUrl = URL(fileURLWithPath: "/Library/Management/plists/Dialogs.plist")
+    private let url = URL(fileURLWithPath: "\(plistsFolder)/Config.plist")
+    private let hoursUrl = URL(fileURLWithPath: "\(plistsFolder)/Hours.plist")
+    private let dialogsUrl = URL(fileURLWithPath: "\(plistsFolder)/Dialogs.plist")
 
     var preLoginAgentDelay: TimeInterval {
         read(key: "PreLoginAgentDelay", defaultValue: 10)
@@ -36,6 +38,12 @@ final class Config {
     
     var allowExtend: Bool {
         read(key: "allowExtend", defaultValue: false)
+    }
+    
+    var applicationIcon: URL? {
+        let name = read(key: "AppIcon", defaultValue: "")
+        guard name.count > 0 else { return nil }
+        return URL(fileURLWithPath: plistsFolder).appendingPathComponent(name)
     }
 
     private init() {}
@@ -89,21 +97,21 @@ extension Config {
         The Computer has detected that is not in use. Click "Log Off" or click "Okay" to confirm it is in use.
         """)
     }
-
+    
     var dialogBackupText1: String {
         return dialog(name: "Backup", prop: "text1", default:
         """
         System maintenance
         """)
     }
-
+    
     var dialogBackupText2: String {
         return dialog(name: "Backup", prop: "text2", default:
         """
         help desk
         """)
     }
-
+    
     var dialogBackupText3: String {
         return dialog(name: "Backup", prop: "text3", default:
         """
@@ -117,17 +125,33 @@ extension Config {
         The system is cleaning up. Please do not power the computer down.
         """)
     }
+    
+    var dialogBackupImage: URL? {
+        dialog(name: "Backup", prop: "image")
+    }
 
     var dialogWelcomeText: String {
         return dialog(name: "Welcome", prop: "text", default:
         """
         Welcome to Sarah Lawrence College.
-
+        
         This computer will log you off if not in use and we do not save your work.  
         You have 120 seconds to the accept terms.
         """)
     }
-
+    
+    var dialogWelcomeImage: URL? {
+        dialog(name: "Welcome", prop: "image")
+    }
+    
+    var dialogAboutText1: String {
+        return dialog(name: "About", prop: "text1", default: Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "")
+    }
+    
+    var dialogAboutText2: String {
+        return dialog(name: "About", prop: "text2", default: Bundle.main.infoDictionary?["NSHumanReadableCopyright"] as? String ?? "")
+    }
+    
     private func dialog(name: String, prop: String, default defaultText: String) -> String {
         guard
             let root = try? NSDictionary(contentsOf: dialogsUrl, error: ()),
@@ -136,5 +160,15 @@ extension Config {
         else { return defaultText }
         
         return result
+    }
+    
+    private func dialog(name: String, prop: String) -> URL? {
+        guard
+            let root = try? NSDictionary(contentsOf: dialogsUrl, error: ()),
+            let dialog = root[name] as? NSDictionary,
+            let name = dialog[prop] as? String
+        else { return nil }
+        
+        return URL(fileURLWithPath: plistsFolder).appendingPathComponent(name)
     }
 }

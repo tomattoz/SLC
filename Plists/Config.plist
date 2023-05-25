@@ -10,6 +10,8 @@
 	<integer>1800</integer>
 	<key>UsersEnabled</key>
 	<true/>
+	<key>AppIcon</key>
+	<string>icon.png</string>
 	<key>CleanupHour</key>
 	<integer>0</integer>
 </dict>

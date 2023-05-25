@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SLCPreloginAgent" customModuleProvider="target">
             <connections>
+                <outlet property="imageView" destination="EiT-Mj-1SZ" id="lOI-yN-dUb"/>
+                <outlet property="text1" destination="EuZ-gW-NFv" id="1pP-9n-Fa5"/>
+                <outlet property="text2" destination="iL9-qq-S1U" id="hCy-DF-hsv"/>
+                <outlet property="text3" destination="nem-fn-n4H" id="AnJ-TJ-WrW"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -682,9 +686,9 @@
             <point key="canvasLocation" x="200" y="121"/>
         </menu>
         <window title="SLCPreloginAgent" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
             <rect key="contentRect" x="335" y="390" width="470" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <value key="minSize" type="size" width="430" height="320"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="470" height="360"/>
